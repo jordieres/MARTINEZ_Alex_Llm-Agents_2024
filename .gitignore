@@ -1,22 +1,31 @@
+# === Python Virtual Environments ===
 GPTEnv/
 google-cloud-sdk/
 TFGenv/
 VertexEnv/
-__pycache__/
-meta-llama/
-google-cloud-sdk/
 GeminiEnv/
 .venv/
-FineTuning/synthetic_dataset.csv
-poetry.lock/
-pyproject.toml/
+venv/
+
+# === Python Cache and Build Files ===
+__pycache__/
+*.py[cod]
+*.pkl
+*.egg-info/
+.mypy_cache/
+
+# === Data and Output Files ===
+*.csv
 FineTuning/
+FineTuning/synthetic_dataset.csv
 dist/
 LocalLlm/
-Vertex.ipynb/
-*.egg-info/
-__pycache__/
-venv/
-.mypy_cache/
-*.pkl
-*.csv
+meta-llama/
+
+# === Notebooks and Local Config ===
+Vertex.ipynb
+
+# === Python Project Configuration ===
+poetry.lock
+pyproject.toml
+poetry.toml
