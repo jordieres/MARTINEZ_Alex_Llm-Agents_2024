@@ -26,6 +26,3 @@ meta-llama/
 Vertex.ipynb
 
 # === Python Project Configuration ===
-poetry.lock
-pyproject.toml
-poetry.toml
