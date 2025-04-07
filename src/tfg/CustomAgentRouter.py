@@ -5,7 +5,7 @@ class CustomAgentRouter:
         """
         Initializes the classification model using zero-shot learning.
         """
-        self.classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+        self.classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli", device=-1 )
         self.labels = ["weather", "database", "article title", "article content", "generic"]
         self.confidence_threshold = 0.7  # Adjust as needed
 
