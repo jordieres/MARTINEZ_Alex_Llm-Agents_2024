@@ -1,6 +1,9 @@
 from influxdb_client import InfluxDBClient
 from langchain.tools import Tool
 import re
+import json
+from pydantic import BaseModel
+from langchain.tools.base import StructuredTool
 
 # Client configuration
 INFLUXDB_URL = "https://apiivm78.etsii.upm.es:8086"
@@ -14,6 +17,15 @@ query_api = client.query_api()
 # Supported parameters
 VALID_METRICS = {"temperature", "humidity", "light", "motion", "vdd"}
 VALID_AGGREGATIONS = {"mean", "max", "min", "sum"}
+
+# Define expected input schema for the tool using Pydantic
+class InfluxDBQueryInput(BaseModel):
+    """
+    Defines the input parameters required for querying InfluxDB.
+    """
+    metric: str          # Sensor metric to query (e.g., temperature, humidity)
+    time_range: str      # Time range for the query (e.g., 24h, 7d)
+    aggregation: str     # Aggregation function (e.g., mean, max)
 
 # Function to construct Flux query dynamically
 def construct_flux_query(params: dict) -> str:
@@ -50,26 +62,49 @@ def construct_flux_query(params: dict) -> str:
     """
     return flux_query
 
-# Function to execute a Flux query
-def query_influxdb(params: dict) -> str:
+# Function that receives individual arguments (required by StructuredTool)
+def query_influxdb(metric: str, time_range: str, aggregation: str) -> str:
     """
-    Constructs and executes a Flux query on InfluxDB.
-    
+    StructuredTool-compatible function to query InfluxDB using individual parameters.
+
     Args:
-        params (dict): Dictionary containing query parameters (metric, time_range, aggregation).
-    
+        metric (str): Sensor metric to query (e.g., "temperature", "humidity").
+        time_range (str): Time range for the query (e.g., "24h", "7d").
+        aggregation (str): Aggregation function to apply (e.g., "mean", "max").
+
+    Returns:
+        str: Formatted result or error message.
+    """
+    params = {
+        "metric": metric,
+        "time_range": time_range,
+        "aggregation": aggregation
+    }
+    return _query_influxdb_internal(params)
+
+# Internal function to perform the actual query logic
+def _query_influxdb_internal(params: dict) -> str:
+    """
+    Constructs and executes a Flux query on InfluxDB from parameter dictionary.
+
+    Args:
+        params (dict): Dictionary containing 'metric', 'time_range', and 'aggregation'.
+
     Returns:
         str: Query results or an error message.
     """
     try:
+        # Build the Flux query dynamically from parameters
         flux_query = construct_flux_query(params)
 
         print(f"📊 Extracted Parameters: {params}")
         print(f"🔥 Executing Flux Query:\n{flux_query}") 
 
+        # Execute the query using InfluxDB client
         result = query_api.query(org=INFLUXDB_ORG, query=flux_query)
         results = []
 
+        # Format the results
         for table in result:
             for record in table.records:
                 results.append(f"Time: {record.get_time()}, Value: {record.get_value()}")
@@ -118,8 +153,14 @@ def extract_time_range(user_query: str) -> str:
     return detected_range
 
 # LangChain compatible tool
-influx_tool = Tool(
+
+influx_tool = StructuredTool.from_function(
     name="InfluxDB Query Tool",
+    description=(
+        "Fetches sensor data from InfluxDB. "
+        "Requires parameters like metric (e.g., humidity, temperature), "
+        "time_range (e.g., 24h), and aggregation (e.g., mean)."
+    ),
     func=query_influxdb,
-    description="Fetches sensor data from InfluxDB. Requires parameters like metric (e.g., humidity, temperature), time_range (e.g., 24h), and aggregation (e.g., mean)."
+    args_schema=InfluxDBQueryInput
 )

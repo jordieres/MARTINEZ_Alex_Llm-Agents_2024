@@ -44,7 +44,7 @@ class BaseAgent:
         self.agent = initialize_agent(
             tools=self.tools,
             llm=llm,
-            agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,  # Uses tools only if needed
+            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,  # Uses tools only if needed
             verbose=True,  # Enables logging for debugging
         )
 
