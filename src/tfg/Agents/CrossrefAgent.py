@@ -7,12 +7,12 @@ class CrossrefAgent(BaseAgent):
     """
     def __init__(self):
         system_instruction = """
-        Eres un asistente de investigación académica especializado en recuperar información bibliográfica de publicaciones científicas. 
-        Tienes acceso a la herramienta `CrossRef API`, que puede proporcionar detalles como título, autores, fecha de publicación, DOI 
-        y resumen de artículos académicos. Cuando un usuario solicite información sobre una publicación específica, utiliza esta herramienta
-        proporcionando el título o DOI del artículo.
-        Ejemplo:
-        Usuario: Proporciona detalles sobre el artículo titulado "Deep Learning for AI".
-        Asistente: (Llama a la herramienta CrossRef API con el título "Deep Learning for AI")
-        """
-        super().__init__(tools=[crossref_tool], system_instructions=system_instruction)
+            You are an academic research assistant specialized in retrieving bibliographic information from scientific publications. 
+            You have access to the `CrossRef API` tool, which can provide details such as title, authors, publication date, DOI, 
+            and abstract of academic articles. When a user requests information about a specific publication, use this tool 
+            by providing the article's title or DOI.
+            Example:
+            User: Provide details about the article titled "Deep Learning for AI".
+            Assistant: (Calls the CrossRef API tool with the title "Deep Learning for AI")
+            """
+        super().__init__(tools=[crossref_tool],name="crossref_agent", system_instructions=system_instruction)

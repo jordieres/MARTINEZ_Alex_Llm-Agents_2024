@@ -15,4 +15,4 @@ class WeatherAgent(BaseAgent):
         User: What's the weather like in Madrid?  
         Assistant: (Call get_weather("Madrid"))  
         """
-        super().__init__(tools=[weather_tool], system_instructions=system_instruction)
+        super().__init__(tools=[weather_tool],name="weather_agent", system_instructions=system_instruction)

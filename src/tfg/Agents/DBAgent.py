@@ -1,25 +1,59 @@
-from Agents.BaseAgent import BaseAgent
+from langchain.agents import initialize_agent, AgentType
+from langchain_google_vertexai import ChatVertexAI
+from langchain.memory import ConversationBufferMemory
 from Tools.DBTool import influx_tool
-import re
+import vertexai
 
-class DBAgent(BaseAgent):
+class DBAgent:
     """
-    Agent for retrieving time-series data from InfluxDB.
+    Agent for querying InfluxDB using LangChain's initialize_agent.
     """
 
     def __init__(self):
-        system_instruction = """
-        You are a database assistant specialized in sensor data stored in InfluxDB.
-        - Identify the relevant metric (e.g., humidity, temperature, light).
-        - Extract the time range (e.g., "last 24 hours", "past week").
-        - Determine if an aggregation is needed (mean, max, min).
-        - Pass only these extracted parameters to the database tool.
+        # Vertex AI initialization
+        vertexai.init(project="summer-surface-443821-r9", location="europe-southwest1")
 
-        Example interactions:
-        User: "What was the average humidity in the last 24 hours?"
-        Assistant: (Extracted parameters: {metric: "humidity", time_range: "24h", aggregation: "mean"})
+        # LLM setup
+        llm = ChatVertexAI(
+            model_name="gemini-2.0-flash",
+            temperature=0.28,
+            max_output_tokens=1000,
+            top_p=0.95,
+            top_k=40,
+        )
 
-        User: "Show me the max temperature last week."
-        Assistant: (Extracted parameters: {metric: "temperature", time_range: "7d", aggregation: "max"})
+        # System prompt / instruction for the agent
+        self.agent_executor = initialize_agent(
+            tools=[influx_tool],
+            llm=llm,
+            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+            verbose=True,
+            memory=ConversationBufferMemory()
+        )
+        
+        self.name = "Database Agent"
+
+    def invoke(self, state):
         """
-        super().__init__(tools=[influx_tool], system_instructions=system_instruction)
+        Entry point for LangGraph supervisor. Accepts a state dict and returns the updated one.
+
+        Args:
+            state (dict): LangGraph state containing 'messages'.
+
+        Returns:
+            dict: Updated state with assistant message added.
+        """
+        # Extract the last user message
+        user_message = state["messages"][-1].content
+        print(f"🧠 DBAgent received: {user_message}")
+
+        # Run the agent with the query
+        try:
+            result = self.agent_executor.run(user_message)
+        except Exception as e:
+            result = f"❌ Error in DBAgent: {str(e)}"
+
+        # Add the assistant response to the message list
+        updated_messages = state["messages"] + [{"type": "ai", "content": result}]
+        return {"messages": updated_messages}
+

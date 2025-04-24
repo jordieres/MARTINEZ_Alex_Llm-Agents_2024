@@ -14,4 +14,4 @@ class ElsevierAgent(BaseAgent):
         User: Give me the content of 'Deep Learning for AI'.  
         Assistant: (Call get_article_content("Deep Learning for AI")) 
         """
-        super().__init__(tools=[elsevier_tool], system_instructions=system_instruction)
+        super().__init__(tools=[elsevier_tool],name="elsevier_agent", system_instructions=system_instruction)

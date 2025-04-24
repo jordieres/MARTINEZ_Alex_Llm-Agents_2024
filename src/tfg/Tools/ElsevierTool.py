@@ -1,5 +1,11 @@
 import requests
 from langchain.tools import Tool
+from pydantic import BaseModel
+from langchain.tools import StructuredTool
+
+# Define expected input schema for the tool using Pydantic
+class ArticleInput(BaseModel):
+    title: str
 
 def get_article_content(title: str) -> str:
     """
@@ -54,8 +60,9 @@ def get_article_content(title: str) -> str:
     return f"Content of the article '{title}':\n\n{abstract}"
 
 # Create compatible tool
-elsevier_tool = Tool(
-    name="Elsevier Article Search",
+elsevier_tool = StructuredTool.from_function(
+    name="elsevier_article_search",
+    description="Fetches article content by its title from Elsevier.",
     func=get_article_content,
-    description="Use this tool to fetch the content of an article based on its title."
+    args_schema=ArticleInput,
 )

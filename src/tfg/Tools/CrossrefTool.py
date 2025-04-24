@@ -1,8 +1,14 @@
 from typing import Dict
 from habanero import Crossref
-from langchain.tools import Tool
+from pydantic import BaseModel
+from langchain.tools import StructuredTool
 
-def crossref(subject: str) -> Dict:
+# Define input schema
+class CrossrefInput(BaseModel):
+    subject: str
+
+# Update function to return str instead of dict for clarity with LLMs
+def crossref(subject: str) -> str:
     """
     Fetches article titles and abstracts from Crossref based on a given subject.
 
@@ -10,25 +16,25 @@ def crossref(subject: str) -> Dict:
         subject (str): The subject of the articles to search.
 
     Returns:
-        Dict: A dictionary containing article titles as keys and their abstracts as values. 
-              If an error occurs, the dictionary contains an "error" key with the error message.
+        str: A formatted string containing article titles and abstracts.
     """
     limit = 5
-    results = {}
     cr = Crossref()
     try:
         result = cr.works(query=subject, limit=limit)
-        for i in range(0, limit-1):
+        output = []
+        for i in range(0, limit - 1):
             title = result['message']['items'][i].get('title', ['No Title'])[0]
             abstract = result['message']['items'][i].get('abstract', 'No abstract available')
-            results[title] = abstract
-        return results
+            output.append(f"🔹 Title: {title}\n📝 Abstract: {abstract}")
+        return "\n\n".join(output)
     except Exception as e:
-        return {"error": str(e)}
+        return f"❌ Error fetching articles: {str(e)}"
 
-# Create compatible tool
-crossref_tool = Tool(
-    name="Crossref article search",
+# Structured tool
+crossref_tool = StructuredTool.from_function(
+    name="crossref_article_search",
     func=crossref,
-    description="Use this tool to fetch article titles and abstracts based on a given subject."
+    description="Fetch article titles and abstracts from Crossref based on a subject.",
+    args_schema=CrossrefInput,
 )
