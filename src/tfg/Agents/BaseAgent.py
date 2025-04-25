@@ -3,6 +3,7 @@ from langgraph.prebuilt import create_react_agent
 from langchain_google_vertexai import ChatVertexAI
 from typing import Dict, List
 import vertexai
+from langchain_core.messages import AIMessage
 
 
 class BaseAgent:
@@ -55,31 +56,38 @@ class BaseAgent:
             prompt=system_instructions
         )
 
-    def invoke(self, state: dict) -> dict:
+    from langchain_core.messages import AIMessage
+
+    def invoke(self, input_data: dict) -> dict:
         """
-        Supervisor-compatible entry point for executing the agent.
-        Receives a LangGraph state dict and returns updated messages.
+        Entry point for langgraph-supervisor to call this agent.
 
         Args:
-            state (dict): LangGraph state containing 'messages'.
+            input_data (dict): State passed by the supervisor (e.g., {"messages": [...]})
 
         Returns:
-            dict: Updated state with appended assistant message.
+            dict: Agent's structured response.
         """
-        from langchain_core.messages import HumanMessage
+        print(f"🧠 {self.name} received query")
+        result = self.agent.invoke(input_data)
 
-        user_message = state["messages"][-1].content
-        print(f"🧠 {self.name} received: {user_message}")
+        # Extract and store the assistant response
+        messages = result.get("messages", [])
+        final_output = messages[-1].content if messages else "[Agent did not return a message]"
 
-        try:
-            response = self.agent.invoke({"messages": [HumanMessage(content=user_message)]})
-            content = response["messages"][-1].content
-        except Exception as e:
-            content = f"❌ Error in {self.name}: {str(e)}"
+        # Add a clean AIMessage so the supervisor can surface this to the user
+        messages.append(AIMessage(content=final_output, name="supervisor"))
 
-        updated_messages = state["messages"] + [{"type": "ai", "content": content}]
-        return {"messages": updated_messages}
+        # Optionally include logging info as well
+        #messages.append({
+        #    "type": "system",
+        #    "content": f"[{self.name}] Returned result successfully."
+        #})
 
+        return {
+            "messages": messages,
+            "final_output": final_output
+        }
 
     def run(self, query: str) -> str:
         """
