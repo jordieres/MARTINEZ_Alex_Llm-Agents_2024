@@ -1,12 +1,15 @@
 from langchain.agents import initialize_agent, AgentType
 from langchain_google_vertexai import ChatVertexAI
 from langchain.memory import ConversationBufferMemory
+from langchain_core.messages import HumanMessage, AIMessage
 from Tools.DBTool import influx_tool
 import vertexai
+
 
 class DBAgent:
     """
     Agent for querying InfluxDB using LangChain's initialize_agent.
+    Compatible with langgraph-supervisor expectations.
     """
 
     def __init__(self):
@@ -22,7 +25,7 @@ class DBAgent:
             top_k=40,
         )
 
-        # System prompt / instruction for the agent
+        # Tool-based agent setup
         self.agent_executor = initialize_agent(
             tools=[influx_tool],
             llm=llm,
@@ -30,30 +33,28 @@ class DBAgent:
             verbose=True,
             memory=ConversationBufferMemory()
         )
-        
-        self.name = "Database Agent"
+
+        self.name = "db_agent"
 
     def invoke(self, state):
         """
         Entry point for LangGraph supervisor. Accepts a state dict and returns the updated one.
-
-        Args:
-            state (dict): LangGraph state containing 'messages'.
-
-        Returns:
-            dict: Updated state with assistant message added.
         """
-        # Extract the last user message
-        user_message = state["messages"][-1].content
-        print(f"🧠 DBAgent received: {user_message}")
+        # 🔍 Find the last user message (HumanMessage)
+        user_messages = [m for m in state["messages"] if m.type == "human"]
+        if not user_messages:
+            query = "No human message found."
+        else:
+            query = user_messages[-1].content
 
-        # Run the agent with the query
+        print(f"🧠 db_agent received query: {query}")
+
         try:
-            result = self.agent_executor.run(user_message)
+            response = self.agent_executor.run(query)
         except Exception as e:
-            result = f"❌ Error in DBAgent: {str(e)}"
+            response = f"❌ Error in DBAgent: {str(e)}"
 
-        # Add the assistant response to the message list
-        updated_messages = state["messages"] + [{"type": "ai", "content": result}]
-        return {"messages": updated_messages}
-
+        return {
+            "messages": state["messages"] + [{"type": "ai", "content": response}],
+            "final_output": response,
+        }

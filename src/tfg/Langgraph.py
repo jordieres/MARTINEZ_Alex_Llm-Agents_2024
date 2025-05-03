@@ -1,7 +1,7 @@
 from Agents.BaseAgent import BaseAgent
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
-from langchain.schema import HumanMessage, AIMessage, SystemMessage
+from langchain.schema import HumanMessage, BaseMessage
 from langchain.memory import ConversationBufferMemory
 from Agents.WeatherAgent import WeatherAgent
 from Agents.DBAgent import DBAgent
@@ -15,10 +15,14 @@ from Tools.CrossrefTool import crossref_tool
 from Tools.WeatherTool import weather_tool
 from Tools.ElsevierTool import elsevier_tool
 from Tools.DBTool import influx_tool
+from typing import List
 
 # suppress excessive logs
 transformers.logging.set_verbosity_error()
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+# Persistent memory buffer for the conversation
+conversation_memory: List[BaseMessage] = []
 
 # Initialize your specialized agents
 weather_agent = WeatherAgent()
@@ -64,16 +68,23 @@ def run_conversation(user_input: str):
       2) The `final_output` field if present (otherwise, last assistant content)
     """
     print("\n🔄 Starting Supervisor Flow")
+
+    # Append user input to the memory
+    conversation_memory.append(HumanMessage(content=user_input))
+
+    # Run the graph with all past messages
     result = graph.invoke({
-        "messages": [HumanMessage(content=user_input)]
+        "messages": conversation_memory
     })
+
+    # Update memory with the new full message trace
+    conversation_memory.clear()
+    conversation_memory.extend(result["messages"])
 
     # 1) Full message trace (for debugging / explainability)
     print("\n📜 Full message trace:")
     for msg in result["messages"]:
-        # Use the message's class name as its 'role'
         msg_type = msg.__class__.__name__
-        # Safely get its `.content`
         content = getattr(msg, "content", "")
         print(f"{msg_type}: {content}")
 
@@ -83,10 +94,9 @@ def run_conversation(user_input: str):
         print("\n🧠 Final Output:")
         print(final)
     else:
-        # Fallback: reprint the last assistant content
         last = result["messages"][-1]
         fallback = getattr(last, "content", str(last))
-        print("\n⚠️ No `final_output` field, falling back to last assistant message:")
+        print("\n Response:")
         print(fallback)
 
 if __name__ == "__main__":

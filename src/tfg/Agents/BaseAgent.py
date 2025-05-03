@@ -71,18 +71,20 @@ class BaseAgent:
         print(f"🧠 {self.name} received query")
         result = self.agent.invoke(input_data)
 
-        # Extract and store the assistant response
+        # Retrieve all AIMessage-type messages that have content
         messages = result.get("messages", [])
-        final_output = messages[-1].content if messages else "[Agent did not return a message]"
+        final_output = None
 
-        # Add a clean AIMessage so the supervisor can surface this to the user
+        for msg in reversed(messages):
+            if isinstance(msg, AIMessage) and msg.content.strip():
+                final_output = msg.content.strip()
+                break
+
+        if final_output is None:
+            final_output = "[Agent did not return a valid message]"
+
+        # Append clean AIMessage to be surfaced by supervisor
         messages.append(AIMessage(content=final_output, name="supervisor"))
-
-        # Optionally include logging info as well
-        #messages.append({
-        #    "type": "system",
-        #    "content": f"[{self.name}] Returned result successfully."
-        #})
 
         return {
             "messages": messages,
