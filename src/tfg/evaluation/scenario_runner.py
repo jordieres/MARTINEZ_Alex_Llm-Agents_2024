@@ -1,9 +1,16 @@
 import os
-import re
-from Langgraph_supervisor.Langgraph import run_conversation
+import sys
+import io
+from contextlib import redirect_stdout
+
+# Add the root path of your modules
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from System.main import run_conversation
 from evaluator import evaluate_response 
 
-SCENARIO_FILE = "scenarios/complex_scenarios.txt"
+BASE_DIR = os.path.dirname(__file__)
+SCENARIO_FILE = os.path.join(os.path.dirname(__file__), "scenarios", "complex_scenarios.txt")
 LOG_DIR = "logs"
 METRIC_DIR = "metrics"
 
@@ -41,7 +48,7 @@ def parse_scenarios(file_path):
             elif not line.startswith("#"):
                 prompt_lines.append(line)
         scenario["prompt"] = " ".join(prompt_lines).strip()
-        if scenario["id"]:
+        if scenario["id"] and scenario["prompt"]:
             scenarios.append(scenario)
     return scenarios
 
@@ -50,21 +57,33 @@ def run_and_log(scenario):
     """Runs the conversation and logs the output and metrics"""
     print(f"\n▶️ Running {scenario['id']} [{scenario['difficulty']}]")
 
-    # Run the system and capture full result
-    result = run_conversation(scenario["prompt"], return_full=True)
+    # Redirect stdout to capture printed messages (Thought, Action, etc.)
+    stdout_buffer = io.StringIO()
+    with redirect_stdout(stdout_buffer):
+        result = run_conversation(scenario["prompt"], return_full=True)
+    debug_output = stdout_buffer.getvalue()
 
-    # Save log
+    # Save log file
     log_path = os.path.join(LOG_DIR, f"{scenario['id']}.log")
     with open(log_path, "w", encoding="utf-8") as f:
         f.write("=== PROMPT ===\n")
         f.write(scenario["prompt"] + "\n\n")
+
+        f.write("=== DEBUG OUTPUT ===\n")
+        f.write(debug_output + "\n")
+
         f.write("=== MESSAGES ===\n")
         for msg in result["messages"]:
             msg_type = msg.__class__.__name__
             content = getattr(msg, "content", "")
             f.write(f"{msg_type}: {content}\n")
-        f.write("\n=== FINAL OUTPUT ===\n")
-        f.write(result.get("final_output", "NO final_output field\n"))
+
+        assistant_response = next(
+            (m.content for m in reversed(result["messages"]) if m.__class__.__name__ == "AIMessage"),
+            "NO ASSISTANT RESPONSE"
+        )
+        f.write("\n=== FINAL RESPONSE (from last AIMessage) ===\n")
+        f.write(assistant_response + "\n")
 
     # Evaluate metrics
     metrics = evaluate_response(result, scenario["prompt"])
@@ -76,8 +95,10 @@ def run_and_log(scenario):
     print(f"✅ Done: Logs → {log_path}, Metrics → {metric_path}")
 
 
+
 def run_all():
     """Main loop: parse scenarios and run each"""
+    print("Path:", SCENARIO_FILE)
     scenarios = parse_scenarios(SCENARIO_FILE)
     for scenario in scenarios:
         run_and_log(scenario)
