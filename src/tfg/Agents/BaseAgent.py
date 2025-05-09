@@ -1,9 +1,9 @@
-from langchain.agents import Tool
+from langchain.agents import Tool, AgentExecutor, create_openai_functions_agent
 from langgraph.prebuilt import create_react_agent
 from langchain_google_vertexai import ChatVertexAI
 from typing import Dict, List
 import vertexai
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, SystemMessage
 
 
 class BaseAgent:
@@ -49,12 +49,12 @@ class BaseAgent:
 
         # Create the LangGraph-compatible React-style agent
         self.name = name  # Needed by langgraph-supervisor for routing
-        self.agent = create_react_agent(
-            model=llm,
+        agent = create_openai_functions_agent(
+            llm=llm,
             tools=tools,
-            name=name,
-            prompt=system_instructions
+            #system_message=SystemMessage(content=system_instructions)
         )
+        self.agent = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
     from langchain_core.messages import AIMessage
 

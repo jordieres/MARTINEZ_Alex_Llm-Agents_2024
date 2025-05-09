@@ -1,9 +1,8 @@
 from influxdb_client import InfluxDBClient
-from langchain.tools import Tool
 import re
-import json
 from pydantic import BaseModel
 from langchain.tools.base import StructuredTool
+from typing import Optional
 
 # Client configuration
 INFLUXDB_URL = "https://apiivm78.etsii.upm.es:8086"
@@ -22,40 +21,60 @@ VALID_AGGREGATIONS = {"mean", "max", "min", "sum"}
 class InfluxDBQueryInput(BaseModel):
     """
     Defines the input parameters required for querying InfluxDB.
+
+    Attributes:
+        metric (str): Sensor metric to query (e.g., temperature, humidity).
+        time_range (Optional[str]): Relative time range (e.g., '24h', '7d'). Ignored if start_time is provided.
+        aggregation (str): Aggregation function to apply (e.g., 'mean', 'max').
+        start_time (Optional[str]): Absolute start time in ISO 8601 format.
+        end_time (Optional[str]): Absolute end time in ISO 8601 format.
     """
-    metric: str          # Sensor metric to query (e.g., temperature, humidity)
-    time_range: str      # Time range for the query (e.g., 24h, 7d)
-    aggregation: str     # Aggregation function (e.g., mean, max)
+    metric: str
+    aggregation: str
+    time_range: Optional[str] = None
+    start_time: Optional[str] = None
+    end_time: Optional[str] = None
+
 
 # Function to construct Flux query dynamically
 def construct_flux_query(params: dict) -> str:
     """
     Constructs a Flux query based on extracted parameters.
-    
-    Args:
-        params (dict): A dictionary containing 'metric', 'time_range', and 'aggregation'.
-    
-    Returns:
-        str: A formatted Flux query.
-    """
-    measurement = "sensor_data"  # Default measurement
-    field = params.get("metric", "humidity")  # Default metric
-    time_range = params.get("time_range", "24h")  # Default to 24h if missing
-    aggregation = params.get("aggregation", "mean")  # Default to mean
 
-    # Validate metric
+    Args:
+        params (dict): Dictionary with keys 'metric', 'aggregation', and either 'time_range' or both 'start_time' and 'end_time'.
+
+    Returns:
+        str: A formatted Flux query string.
+
+    Raises:
+        ValueError: If metric or aggregation is invalid, or required time parameters are missing.
+    """
+    field = params.get("metric", "humidity")
+    aggregation = params.get("aggregation", "mean")
+    start_time = params.get("start_time")
+    end_time = params.get("end_time")
+    time_range = params.get("time_range", "24h")
+
+    # Validate metric and aggregation
     if field not in VALID_METRICS:
         raise ValueError(f"❌ Invalid metric '{field}'. Available metrics: {', '.join(VALID_METRICS)}")
-
-    # Validate aggregation function
     if aggregation not in VALID_AGGREGATIONS:
         raise ValueError(f"❌ Invalid aggregation '{aggregation}'. Available functions: {', '.join(VALID_AGGREGATIONS)}")
 
-    # Construct Flux query
+    # Build time range
+    if start_time and end_time:
+        time_clause = f'range(start: time(v: "{start_time}"), stop: time(v: "{end_time}"))'
+    elif time_range:
+        time_clause = f'range(start: -{time_range})'
+    else:
+        raise ValueError("❌ You must provide either a relative time_range or both start_time and end_time.")
+
+    # Construct query
     flux_query = f"""
     from(bucket: "{INFLUXDB_BUCKET}")
-      |> range(start: -{time_range})
-      |> filter(fn: (r) => r["_measurement"] == "{measurement}")
+      |> {time_clause}
+      |> filter(fn: (r) => r["_measurement"] == "sensor_data")
       |> filter(fn: (r) => r["_field"] == "{field}")
       |> aggregateWindow(every: 1h, fn: {aggregation}, createEmpty: false)
       |> yield(name: "result")
@@ -63,24 +82,35 @@ def construct_flux_query(params: dict) -> str:
     return flux_query
 
 # Function that receives individual arguments (required by StructuredTool)
-def query_influxdb(metric: str, time_range: str, aggregation: str) -> str:
+def query_influxdb(
+    metric: str,
+    aggregation: str,
+    time_range: Optional[str] = None,
+    start_time: Optional[str] = None,
+    end_time: Optional[str] = None
+) -> str:
     """
-    StructuredTool-compatible function to query InfluxDB using individual parameters.
+    Queries InfluxDB using structured parameters. Accepts both relative and absolute time formats.
 
     Args:
-        metric (str): Sensor metric to query (e.g., "temperature", "humidity").
-        time_range (str): Time range for the query (e.g., "24h", "7d").
-        aggregation (str): Aggregation function to apply (e.g., "mean", "max").
+        metric (str): Metric name to query (e.g., "temperature").
+        aggregation (str): Aggregation function (e.g., "mean", "max").
+        time_range (str, optional): Relative time range (e.g., "24h", "7d"). Ignored if start_time and end_time are provided.
+        start_time (str, optional): Absolute start time (e.g., "2024-11-01T00:00:00Z").
+        end_time (str, optional): Absolute end time (e.g., "2024-11-10T23:59:59Z").
 
     Returns:
-        str: Formatted result or error message.
+        str: Resulting observation string or error message.
     """
     params = {
         "metric": metric,
         "time_range": time_range,
-        "aggregation": aggregation
+        "aggregation": aggregation,
+        "start_time": start_time,
+        "end_time": end_time,
     }
     return _query_influxdb_internal(params)
+
 
 # Internal function to perform the actual query logic
 def _query_influxdb_internal(params: dict) -> str:
@@ -153,13 +183,13 @@ def extract_time_range(user_query: str) -> str:
     return detected_range
 
 # LangChain compatible tool
-
 influx_tool = StructuredTool.from_function(
     name="InfluxDB Query Tool",
     description=(
-        "Fetches sensor data from InfluxDB. "
-        "Requires parameters like metric (e.g., humidity, temperature), "
-        "time_range (e.g., 24h), and aggregation (e.g., mean)."
+        "Fetches sensor data from InfluxDB.\n"
+        "- Required parameters: `metric` (e.g., 'temperature'), `aggregation` (e.g., 'mean').\n"
+        "- Time range can be specified either as a relative `time_range` (e.g., '24h') or as absolute times with `start_time` and `end_time` "
+        "(e.g., '2024-11-01T00:00:00Z')."
     ),
     func=query_influxdb,
     args_schema=InfluxDBQueryInput

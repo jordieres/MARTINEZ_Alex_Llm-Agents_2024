@@ -1,7 +1,6 @@
 from langchain.agents import initialize_agent, AgentType
 from langchain_google_vertexai import ChatVertexAI
 from langchain.memory import ConversationBufferMemory
-from langchain_core.messages import HumanMessage, AIMessage
 from Tools.DBTool import influx_tool
 import vertexai
 
@@ -13,6 +12,16 @@ class DBAgent:
     """
 
     def __init__(self):
+        system_instruction = """
+        You are a database assistant for querying sensor data from a university lab environment.
+        - All sensors belong to laboratories at Universidad Politécnica de Madrid.
+        - If the user refers to "the lab" or "indoor data", assume it means the laboratory's sensor system.
+        - If indoor data is missing, notify the user and suggest using fallback sources like outdoor data or weather API.
+        - Sensor data includes temperature, humidity, light, motion, and vdd.
+        - Time ranges can be relative (e.g., 7d) or absolute (e.g., 2024-11-01 to 2024-11-10).
+        - If the user specifies outdoor data  is the weather agent work
+        """
+        
         # Vertex AI initialization
         vertexai.init(project="summer-surface-443821-r9", location="europe-southwest1")
 
@@ -31,7 +40,8 @@ class DBAgent:
             llm=llm,
             agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
             verbose=True,
-            memory=ConversationBufferMemory()
+            memory=ConversationBufferMemory(),
+            agent_kwargs={"system_message": system_instruction}
         )
 
         self.name = "db_agent"
