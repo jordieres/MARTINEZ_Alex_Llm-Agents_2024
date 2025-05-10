@@ -12,6 +12,7 @@ class WeatherAgent(BaseAgent):
 
         - You have access to a tool called `get_weather_openmeteo(location: str = "Madrid", date: Optional[str]`.
         - The tool supports both current and historical data, as long as you specify a valid location and optional date.
+        - The tool supports specifying a date.
         - If no location is provided, assume "Madrid" by default, as the user is working with lab data from the Universidad Politécnica de Madrid.
         - If the user asks for weather data over **multiple days**, make a separate call to the tool for each day in the range.
         - If the user asks for an **average temperature or humidity over time**, you should collect the daily/hourly values and pass them to the `calculator_agent` to compute the result.

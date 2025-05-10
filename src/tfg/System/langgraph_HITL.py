@@ -3,13 +3,11 @@ from typing import Dict, Annotated
 from typing_extensions import TypedDict
 from langgraph.graph.message import add_messages
 from langchain.memory import ConversationBufferMemory
-from CustomAgentRouter import CustomAgentRouter
 from Agents.WeatherAgent import WeatherAgent
 from Agents.DBAgent import DBAgent
 from Agents.CrossrefAgent import CrossrefAgent
 from Agents.ElsevierAgent import ElsevierAgent
 import transformers
-from langchain.schema import HumanMessage
 transformers.logging.set_verbosity_error()
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -26,8 +24,6 @@ def classify_query(state: State) -> Dict[str, str]:
     If confidence is low, escalate to HITL.
     """
     user_input = state["messages"][-1].content
-    router = CustomAgentRouter()
-    category, confidence = router.classify_text(user_input)
 
     if confidence < router.confidence_threshold:
         print(f"⚠️ Low confidence ({confidence:.2f}) - Escalating to HITL")

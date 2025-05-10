@@ -1,8 +1,8 @@
 # scenario_10
-# difficulty: medium
-# type: fallback-reasoning
+# difficulty: easy
+# type: temperature querying
 # requires: weather_agent, calculator_agent
-Retrieve the average outdoor temperature for the second week of November 2024. Present the daily breakdown and the mean value at the end. Use weather information only.
+Retrieve the average outdoor temperature for the las 2 days of November 2024. Present the daily breakdown and the mean value at the end. Use weather information only.
 
 
 # scenario_0

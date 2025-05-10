@@ -1,0 +1,10 @@
+length_chars: 183
+responds_to_prompt: no
+contains_numerical_value: False
+agent_count: 4
+agent_sequence: weather_agent, db_agent, crossref_agent, elsevier_agent
+uses_weather_agent: True
+uses_db_agent: True
+uses_crossref_agent: True
+uses_elsevier_agent: True
+uses_calculator_agent: False

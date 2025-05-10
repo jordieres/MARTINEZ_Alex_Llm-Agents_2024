@@ -23,10 +23,7 @@ LocalLlm/
 meta-llama/
 System/logs/
 System/metrics/
-evaluation/
-scenarios/
-logs/
-metrics/
+
 
 # === Notebooks and Local Config ===
 Vertex.ipynb

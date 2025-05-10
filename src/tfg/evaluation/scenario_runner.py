@@ -11,8 +11,10 @@ from evaluator import evaluate_response
 
 BASE_DIR = os.path.dirname(__file__)
 SCENARIO_FILE = os.path.join(os.path.dirname(__file__), "scenarios", "complex_scenarios.txt")
-LOG_DIR = "logs"
-METRIC_DIR = "metrics"
+LOG_DIR = os.path.join(os.path.dirname(__file__), "logs")
+METRIC_DIR = os.path.join(os.path.dirname(__file__), "metrics")
+#LOG_DIR = "logs"
+#METRIC_DIR = "metrics"
 
 os.makedirs(LOG_DIR, exist_ok=True)
 os.makedirs(METRIC_DIR, exist_ok=True)
