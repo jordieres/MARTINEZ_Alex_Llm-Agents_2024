@@ -5,24 +5,23 @@ import requests
 from datetime import datetime
 import pytz
 
-
 class WeatherInput(BaseModel):
-    location: str
-    date: Optional[str] = None  # Format: YYYY-MM-DD
-    hour: Optional[int] = None  # 0 to 23
+    location: str = "Madrid"
+    start_date: Optional[str] = None  # YYYY-MM-DD
+    end_date: Optional[str] = None    # YYYY-MM-DD
 
-
-def get_weather_openmeteo(location: str = "Madrid", date: Optional[str] = None) -> str:
+def get_weather_range(location: str = "Madrid", start_date: Optional[str] = None, end_date: Optional[str] = None) -> str:
     """
-    Fetches daily weather data (hourly breakdown) from Open-Meteo for a given date and location.
-    Historical dates are supported. Hour-level queries are not supported in this version.
+    Fetches weather data for a location over a date range using Open-Meteo API.
+    If no end_date is provided, assumes a single-day query.
 
     Args:
-        location (str): City name (e.g., "Madrid").
-        date (Optional[str]): Target date (YYYY-MM-DD). Defaults to today if not provided.
+        location (str): Location name (e.g., "Madrid")
+        start_date (str): ISO date (YYYY-MM-DD)
+        end_date (str): ISO date (YYYY-MM-DD)
 
     Returns:
-        str: Text summary of hourly weather data for the date (temperature and humidity).
+        str: Summary of temperatures per day and hourly breakdown.
     """
     try:
         # Step 1: Get coordinates
@@ -31,56 +30,66 @@ def get_weather_openmeteo(location: str = "Madrid", date: Optional[str] = None) 
         geo_data = geo_response.json()
 
         if "results" not in geo_data or not geo_data["results"]:
-            return f"Location '{location}' not found."
+            return f"❌ Location '{location}' not found."
 
         lat = geo_data["results"][0]["latitude"]
         lon = geo_data["results"][0]["longitude"]
         tz = geo_data["results"][0].get("timezone", "Europe/Madrid")
 
-        # Step 2: Select archive or forecast endpoint
-        if date:
-            base_url = "https://archive-api.open-meteo.com/v1/archive"
-        else:
-            base_url = "https://api.open-meteo.com/v1/forecast"
-            date = datetime.now(pytz.timezone(tz)).strftime("%Y-%m-%d")
+        # Defaults to today if no start date is given
+        if not start_date:
+            start_date = datetime.now().strftime("%Y-%m-%d")
+        if not end_date:
+            end_date = start_date
 
+        # Step 2: Query weather archive with hourly data
+        base_url = "https://archive-api.open-meteo.com/v1/archive"
         params = {
             "latitude": lat,
             "longitude": lon,
-            "start_date": date,
-            "end_date": date,
-            "hourly": "temperature_2m,relative_humidity_2m",
-            "timezone": tz,
+            "start_date": start_date,
+            "end_date": end_date,
+            "daily": "temperature_2m_max,temperature_2m_min",
+            "hourly": "temperature_2m",
+            "timezone": tz
         }
 
         response = requests.get(base_url, params=params)
         data = response.json()
 
-        if "hourly" not in data or "temperature_2m" not in data["hourly"]:
-            return f"No weather data available for {location} on {date}."
+        if "daily" not in data or not data["daily"].get("temperature_2m_max"):
+            return f"⚠️ No weather data available for {location} between {start_date} and {end_date}."
 
-        times = data["hourly"]["time"]
-        temps = data["hourly"]["temperature_2m"]
-        humidity = data["hourly"]["relative_humidity_2m"]
+        # Format output
+        summary = [f"📅 Weather in {location} from {start_date} to {end_date}:"]
+        for i in range(len(data["daily"]["time"])):
+            date = data["daily"]["time"][i]
+            t_max = data["daily"]["temperature_2m_max"][i]
+            t_min = data["daily"]["temperature_2m_min"][i]
+            summary.append(f"- {date}: min {t_min}°C, max {t_max}°C")
 
-        summary_lines = [f"Weather in {location} on {date}:"]
-        for i in range(len(times)):
-            hour_str = times[i].split("T")[1]
-            summary_lines.append(f"- {hour_str}: {temps[i]}°C, {humidity[i]}% humidity")
+            # Add hourly temperatures for the day
+            hourly_times = data.get("hourly", {}).get("time", [])
+            hourly_temps = data.get("hourly", {}).get("temperature_2m", [])
+            if hourly_times and hourly_temps:
+                summary.append("  Hourly temperatures:")
+                for ht, temp in zip(hourly_times, hourly_temps):
+                    if ht.startswith(date):
+                        summary.append(f"    {ht[-5:]}: {temp}°C")
 
-        return "\n".join(summary_lines)
+        return "\n".join(summary)
 
     except Exception as e:
-        return f"Failed to fetch weather data: {str(e)}"
+        return f"❌ Failed to fetch weather data: {str(e)}"
 
-# Register as LangChain StructuredTool
+# LangChain-compatible structured tool
 weather_tool = StructuredTool.from_function(
     name="weather_tool_openmeteo",
     description=(
-        "Fetches historical or current weather data using Open-Meteo. "
-        "Accepts a location (e.g., 'Madrid') and an optional date (YYYY-MM-DD). "
-        "Returns hourly breakdown (temperature and humidity) for the day."
+        "Fetches historical weather data (min/max temperature and hourly temperatures) from Open-Meteo. "
+        "Input required: location (e.g., 'Madrid'), and optional start_date/end_date (YYYY-MM-DD). "
+        "Returns daily summaries with hourly breakdowns."
     ),
-    func=get_weather_openmeteo,
+    func=get_weather_range,
     args_schema=WeatherInput,
 )

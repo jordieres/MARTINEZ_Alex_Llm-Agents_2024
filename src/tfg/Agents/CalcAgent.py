@@ -19,8 +19,4 @@ class CalculatorAgent(BaseAgent):
         User: What is the average of [1, 2, 3]?
         Assistant: (Call calculator_tool with numbers=[1, 2, 3], operation="mean")
         """
-        super().__init__(
-            tools=[calculator_tool],
-            name="calculator_agent",
-            system_instructions=system_instruction
-        )
+        super().__init__(tools=[calculator_tool], name="calculator_agent", system_instructions=system_instruction)

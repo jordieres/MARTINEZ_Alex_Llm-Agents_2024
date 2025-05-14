@@ -21,14 +21,7 @@ class BaseAgent:
         model_name (str): Name of the VertexAI chat model to use.
         model_kwargs (Dict): Optional model configuration overrides.
     """
-    def __init__(
-        self,
-        tools: List[Tool],
-        name: str,
-        system_instructions: str = "",
-        model_name: str = "gemini-2.0-flash",
-        model_kwargs: Dict = None,
-    ):
+    def __init__(self, tools: List[Tool], name: str, system_instructions: str = "", model_name: str = "gemini-2.0-flash", model_kwargs: Dict = None):
         # Vertex AI project/location setup (hardcoded for this use case)
         project = "summer-surface-443821-r9"
         location = "europe-southwest1"
@@ -37,24 +30,14 @@ class BaseAgent:
         vertexai.init(project=project, location=location)
 
         # Default model config (can be overridden by user)
-        self.model_kwargs = model_kwargs or {
-            "temperature": 0.28,
-            "max_output_tokens": 1000,
-            "top_p": 0.95,
-            "top_k": 40,
-        }
+        self.model_kwargs = model_kwargs or {"temperature": 0.28, "max_output_tokens": 1000, "top_p": 0.95, "top_k": 40}
 
         # Create the VertexAI chat model
         llm = ChatVertexAI(model_name=model_name, **self.model_kwargs)
 
         # Create the LangGraph-compatible React-style agent
         self.name = name  # Needed by langgraph-supervisor for routing
-        self.agent = create_react_agent(
-            model=llm,
-            tools=tools,
-            name=name,
-            prompt=system_instructions
-        )
+        self.agent = create_react_agent(model=llm, tools=tools, name=name, prompt=system_instructions)
 
     from langchain_core.messages import AIMessage
 
@@ -69,6 +52,12 @@ class BaseAgent:
             dict: Agent's structured response.
         """
         print(f"🧠 {self.name} received query")
+        if "messages" not in input_data or not input_data["messages"]:
+            raise ValueError(f"{self.name} received an empty message list.")
+    
+        valid_msgs = [msg for msg in input_data["messages"] if hasattr(msg, "content") and msg.content]
+        if not valid_msgs:
+            raise ValueError(f"{self.name} received message(s) with no content.")
         result = self.agent.invoke(input_data)
 
         # Retrieve all AIMessage-type messages that have content
@@ -99,7 +88,7 @@ class BaseAgent:
             query (str): User input to run directly through the agent.
 
         Returns:
-            str: The agent’s textual response.
+            str: The agent textual response.
         """
         from langchain_core.messages import HumanMessage
         return self.agent.invoke({"messages": [HumanMessage(content=query)]})["messages"][-1].content

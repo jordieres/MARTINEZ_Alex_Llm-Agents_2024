@@ -26,23 +26,10 @@ class DBAgent:
         vertexai.init(project="summer-surface-443821-r9", location="europe-southwest1")
 
         # LLM setup
-        llm = ChatVertexAI(
-            model_name="gemini-2.0-flash",
-            temperature=0.28,
-            max_output_tokens=1000,
-            top_p=0.95,
-            top_k=40,
-        )
+        llm = ChatVertexAI(model_name="gemini-2.0-flash", temperature=0.28, max_output_tokens=1000, top_p=0.95, top_k=40)
 
         # Tool-based agent setup
-        self.agent_executor = initialize_agent(
-            tools=[influx_tool],
-            llm=llm,
-            agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION,
-            verbose=True,
-            memory=ConversationBufferMemory(),
-            agent_kwargs={"system_message": system_instruction}
-        )
+        self.agent_executor = initialize_agent(tools=[influx_tool], llm=llm, agent=AgentType.STRUCTURED_CHAT_ZERO_SHOT_REACT_DESCRIPTION, verbose=True, memory=ConversationBufferMemory(), agent_kwargs={"system_message": system_instruction})
 
         self.name = "db_agent"
 
