@@ -1,4 +1,4 @@
-length_chars: 111
+length_chars: 109
 responds_to_prompt: yes
 contains_numerical_value: True
 agent_count: 1

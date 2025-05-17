@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tfg.Tools package &mdash; Agentic AI: An Exploratory And Functional Approach 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tfg.System package" href="tfg.System.html" />
+    <link rel="prev" title="tfg.Agents package" href="tfg.Agents.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Agentic AI: An Exploratory And Functional Approach
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tfg.Agents.html">tfg.Agents package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tfg.Tools package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Tools.CalcTool">tfg.Tools.CalcTool module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.CalcTool.CalculatorInput"><code class="docutils literal notranslate"><span class="pre">CalculatorInput</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CalcTool.CalculatorInput.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CalculatorInput.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CalcTool.CalculatorInput.model_config"><code class="docutils literal notranslate"><span class="pre">CalculatorInput.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CalcTool.CalculatorInput.model_fields"><code class="docutils literal notranslate"><span class="pre">CalculatorInput.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CalcTool.CalculatorInput.numbers"><code class="docutils literal notranslate"><span class="pre">CalculatorInput.numbers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CalcTool.CalculatorInput.operation"><code class="docutils literal notranslate"><span class="pre">CalculatorInput.operation</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.CalcTool.calculate"><code class="docutils literal notranslate"><span class="pre">calculate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Tools.CrossrefTool">tfg.Tools.CrossrefTool module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.CrossrefTool.CrossrefInput"><code class="docutils literal notranslate"><span class="pre">CrossrefInput</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CrossrefTool.CrossrefInput.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">CrossrefInput.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CrossrefTool.CrossrefInput.model_config"><code class="docutils literal notranslate"><span class="pre">CrossrefInput.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CrossrefTool.CrossrefInput.model_fields"><code class="docutils literal notranslate"><span class="pre">CrossrefInput.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.CrossrefTool.CrossrefInput.subject"><code class="docutils literal notranslate"><span class="pre">CrossrefInput.subject</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.CrossrefTool.crossref"><code class="docutils literal notranslate"><span class="pre">crossref()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tfg-tools-dbtool-module">tfg.Tools.DBTool module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Tools.ElsevierTool">tfg.Tools.ElsevierTool module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.ElsevierTool.ArticleInput"><code class="docutils literal notranslate"><span class="pre">ArticleInput</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.ElsevierTool.ArticleInput.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">ArticleInput.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.ElsevierTool.ArticleInput.model_config"><code class="docutils literal notranslate"><span class="pre">ArticleInput.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.ElsevierTool.ArticleInput.model_fields"><code class="docutils literal notranslate"><span class="pre">ArticleInput.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.ElsevierTool.ArticleInput.title"><code class="docutils literal notranslate"><span class="pre">ArticleInput.title</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.ElsevierTool.get_article_content"><code class="docutils literal notranslate"><span class="pre">get_article_content()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Tools.WeatherTool">tfg.Tools.WeatherTool module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.WeatherTool.WeatherInput"><code class="docutils literal notranslate"><span class="pre">WeatherInput</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.WeatherTool.WeatherInput.end_date"><code class="docutils literal notranslate"><span class="pre">WeatherInput.end_date</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.WeatherTool.WeatherInput.location"><code class="docutils literal notranslate"><span class="pre">WeatherInput.location</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.WeatherTool.WeatherInput.model_computed_fields"><code class="docutils literal notranslate"><span class="pre">WeatherInput.model_computed_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.WeatherTool.WeatherInput.model_config"><code class="docutils literal notranslate"><span class="pre">WeatherInput.model_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.WeatherTool.WeatherInput.model_fields"><code class="docutils literal notranslate"><span class="pre">WeatherInput.model_fields</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Tools.WeatherTool.WeatherInput.start_date"><code class="docutils literal notranslate"><span class="pre">WeatherInput.start_date</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Tools.WeatherTool.get_weather_range"><code class="docutils literal notranslate"><span class="pre">get_weather_range()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Tools">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.System.html">tfg.System package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.evaluation.html">tfg.evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.utils.html">tfg.utils package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tfg.html">tfg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tfg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tfg.Agents.html">tfg.Agents package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfg.System.html">tfg.System package</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tfg.Tools package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Tools.CalcTool">tfg.Tools.CalcTool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Tools.CrossrefTool">tfg.Tools.CrossrefTool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg-tools-dbtool-module">tfg.Tools.DBTool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Tools.ElsevierTool">tfg.Tools.ElsevierTool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Tools.WeatherTool">tfg.Tools.WeatherTool module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Tools">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tfg.evaluation.html">tfg.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfg.utils.html">tfg.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tfg.html#module-tfg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Agentic AI: An Exploratory And Functional Approach</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">tfg.Tools package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tfg.Tools.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tfg-tools-package">
+<h1>tfg.Tools package<a class="headerlink" href="#tfg-tools-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-tfg.Tools.CalcTool">
+<span id="tfg-tools-calctool-module"></span><h2>tfg.Tools.CalcTool module<a class="headerlink" href="#module-tfg.Tools.CalcTool" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Tools.CalcTool.CalculatorInput">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Tools.CalcTool.</span></span><span class="sig-name descname"><span class="pre">CalculatorInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/CalcTool.html#CalculatorInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.CalcTool.CalculatorInput" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CalcTool.CalculatorInput.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">ComputedFieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.CalcTool.CalculatorInput.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CalcTool.CalculatorInput.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[ConfigDict]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.CalcTool.CalculatorInput.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CalcTool.CalculatorInput.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">FieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'numbers':</span> <span class="pre">FieldInfo(annotation=List[float],</span> <span class="pre">required=True),</span> <span class="pre">'operation':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#tfg.Tools.CalcTool.CalculatorInput.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CalcTool.CalculatorInput.numbers">
+<span class="sig-name descname"><span class="pre">numbers</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code><span class="pre">]</span></em><a class="headerlink" href="#tfg.Tools.CalcTool.CalculatorInput.numbers" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CalcTool.CalculatorInput.operation">
+<span class="sig-name descname"><span class="pre">operation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#tfg.Tools.CalcTool.CalculatorInput.operation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tfg.Tools.CalcTool.calculate">
+<span class="sig-prename descclassname"><span class="pre">tfg.Tools.CalcTool.</span></span><span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">numbers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/CalcTool.html#calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.CalcTool.calculate" title="Link to this definition"></a></dt>
+<dd><p>Performs a calculation on a list of numbers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>numbers</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – List of numerical values.</p></li>
+<li><p><strong>operation</strong> (<em>str</em>) – Operation to perform (“mean”, “sum”, “min”, “max”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the calculation or error message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-tfg.Tools.CrossrefTool">
+<span id="tfg-tools-crossreftool-module"></span><h2>tfg.Tools.CrossrefTool module<a class="headerlink" href="#module-tfg.Tools.CrossrefTool" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Tools.CrossrefTool.CrossrefInput">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Tools.CrossrefTool.</span></span><span class="sig-name descname"><span class="pre">CrossrefInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/CrossrefTool.html#CrossrefInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.CrossrefTool.CrossrefInput" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CrossrefTool.CrossrefInput.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">ComputedFieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.CrossrefTool.CrossrefInput.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CrossrefTool.CrossrefInput.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[ConfigDict]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.CrossrefTool.CrossrefInput.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CrossrefTool.CrossrefInput.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">FieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'subject':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#tfg.Tools.CrossrefTool.CrossrefInput.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.CrossrefTool.CrossrefInput.subject">
+<span class="sig-name descname"><span class="pre">subject</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#tfg.Tools.CrossrefTool.CrossrefInput.subject" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tfg.Tools.CrossrefTool.crossref">
+<span class="sig-prename descclassname"><span class="pre">tfg.Tools.CrossrefTool.</span></span><span class="sig-name descname"><span class="pre">crossref</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/CrossrefTool.html#crossref"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.CrossrefTool.crossref" title="Link to this definition"></a></dt>
+<dd><p>Fetches article titles and abstracts from Crossref based on a given subject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subject</strong> (<em>str</em>) – The subject of the articles to search.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A formatted string containing article titles and abstracts.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="tfg-tools-dbtool-module">
+<h2>tfg.Tools.DBTool module<a class="headerlink" href="#tfg-tools-dbtool-module" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Tools.DBTool.</span></span><span class="sig-name descname"><span class="pre">InfluxDBQueryInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/DBTool.html#InfluxDBQueryInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Defines the input parameters required for querying InfluxDB.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">metric</span></span></dt>
+<dd><p>Sensor metric to query (e.g., temperature, humidity).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">time_range</span></span></dt>
+<dd><p>Relative time range (e.g., ‘24h’, ‘7d’). Ignored if start_time is provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">aggregation</span></span></dt>
+<dd><p>Aggregation function to apply (e.g., ‘mean’, ‘max’).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">start_time</span></span></dt>
+<dd><p>Absolute start time in ISO 8601 format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">end_time</span></span></dt>
+<dd><p>Absolute end time in ISO 8601 format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">aggregation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">end_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">metric</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">ComputedFieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[ConfigDict]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">FieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aggregation':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'end_time':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'metric':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True),</span> <span class="pre">'start_time':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'time_range':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None)}</span></em></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">start_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">time_range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">tfg.Tools.DBTool.</span></span><span class="sig-name descname"><span class="pre">construct_flux_query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/DBTool.html#construct_flux_query"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Constructs a Flux query based on extracted parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> (<em>dict</em>) – Dictionary with keys ‘metric’, ‘aggregation’, and either ‘time_range’ or both ‘start_time’ and ‘end_time’.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A formatted Flux query string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If metric or aggregation is invalid, or required time parameters are missing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">tfg.Tools.DBTool.</span></span><span class="sig-name descname"><span class="pre">extract_time_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/DBTool.html#extract_time_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Extracts the time range from a user query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user_query</strong> (<em>str</em>) – The input query from the user.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A formatted time range for InfluxDB (e.g., “24h”, “7d”, “30d”).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">tfg.Tools.DBTool.</span></span><span class="sig-name descname"><span class="pre">query_influxdb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/DBTool.html#query_influxdb"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Queries InfluxDB using structured parameters. Accepts both relative and absolute time formats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric</strong> (<em>str</em>) – Metric name to query (e.g., “temperature”).</p></li>
+<li><p><strong>aggregation</strong> (<em>str</em>) – Aggregation function (e.g., “mean”, “max”).</p></li>
+<li><p><strong>time_range</strong> (<em>str</em><em>, </em><em>optional</em>) – Relative time range (e.g., “24h”, “7d”). Ignored if start_time and end_time are provided.</p></li>
+<li><p><strong>start_time</strong> (<em>str</em><em>, </em><em>optional</em>) – Absolute start time (e.g., “2024-11-01T00:00:00Z”).</p></li>
+<li><p><strong>end_time</strong> (<em>str</em><em>, </em><em>optional</em>) – Absolute end time (e.g., “2024-11-10T23:59:59Z”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Resulting observation string or error message.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-tfg.Tools.ElsevierTool">
+<span id="tfg-tools-elseviertool-module"></span><h2>tfg.Tools.ElsevierTool module<a class="headerlink" href="#module-tfg.Tools.ElsevierTool" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Tools.ElsevierTool.ArticleInput">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Tools.ElsevierTool.</span></span><span class="sig-name descname"><span class="pre">ArticleInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/ElsevierTool.html#ArticleInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.ElsevierTool.ArticleInput" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.ElsevierTool.ArticleInput.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">ComputedFieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.ElsevierTool.ArticleInput.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.ElsevierTool.ArticleInput.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[ConfigDict]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.ElsevierTool.ArticleInput.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.ElsevierTool.ArticleInput.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">FieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'title':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=True)}</span></em><a class="headerlink" href="#tfg.Tools.ElsevierTool.ArticleInput.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.ElsevierTool.ArticleInput.title">
+<span class="sig-name descname"><span class="pre">title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#tfg.Tools.ElsevierTool.ArticleInput.title" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tfg.Tools.ElsevierTool.get_article_content">
+<span class="sig-prename descclassname"><span class="pre">tfg.Tools.ElsevierTool.</span></span><span class="sig-name descname"><span class="pre">get_article_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/ElsevierTool.html#get_article_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.ElsevierTool.get_article_content" title="Link to this definition"></a></dt>
+<dd><p>Fetches the content of a specific article using Elsevier’s APIs based on its title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>title</strong> (<em>str</em>) – The title of the article to search for.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>A string containing the content or abstract of the specified article.</dt><dd><p>If the article cannot be found or an error occurs, an appropriate error message is returned.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-tfg.Tools.WeatherTool">
+<span id="tfg-tools-weathertool-module"></span><h2>tfg.Tools.WeatherTool module<a class="headerlink" href="#module-tfg.Tools.WeatherTool" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.WeatherInput">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Tools.WeatherTool.</span></span><span class="sig-name descname"><span class="pre">WeatherInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/WeatherTool.html#WeatherInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.WeatherTool.WeatherInput" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.WeatherInput.end_date">
+<span class="sig-name descname"><span class="pre">end_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#tfg.Tools.WeatherTool.WeatherInput.end_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.WeatherInput.location">
+<span class="sig-name descname"><span class="pre">location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></em><a class="headerlink" href="#tfg.Tools.WeatherTool.WeatherInput.location" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.WeatherInput.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">ComputedFieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.WeatherTool.WeatherInput.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.WeatherInput.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[ConfigDict]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Tools.WeatherTool.WeatherInput.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.WeatherInput.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">FieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'end_date':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'location':</span> <span class="pre">FieldInfo(annotation=str,</span> <span class="pre">required=False,</span> <span class="pre">default='Madrid'),</span> <span class="pre">'start_date':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None)}</span></em><a class="headerlink" href="#tfg.Tools.WeatherTool.WeatherInput.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.WeatherInput.start_date">
+<span class="sig-name descname"><span class="pre">start_date</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code><span class="pre">]</span></em><a class="headerlink" href="#tfg.Tools.WeatherTool.WeatherInput.start_date" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tfg.Tools.WeatherTool.get_weather_range">
+<span class="sig-prename descclassname"><span class="pre">tfg.Tools.WeatherTool.</span></span><span class="sig-name descname"><span class="pre">get_weather_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Madrid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Tools/WeatherTool.html#get_weather_range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Tools.WeatherTool.get_weather_range" title="Link to this definition"></a></dt>
+<dd><p>Fetches weather data for a location over a date range using Open-Meteo API.
+If no end_date is provided, assumes a single-day query.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>location</strong> (<em>str</em>) – Location name (e.g., “Madrid”)</p></li>
+<li><p><strong>start_date</strong> (<em>str</em>) – ISO date (YYYY-MM-DD)</p></li>
+<li><p><strong>end_date</strong> (<em>str</em>) – ISO date (YYYY-MM-DD)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Summary of temperatures per day and hourly breakdown.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-tfg.Tools">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tfg.Tools" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tfg.Agents.html" class="btn btn-neutral float-left" title="tfg.Agents package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tfg.System.html" class="btn btn-neutral float-right" title="tfg.System package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alejandro Martinez Esquivias.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

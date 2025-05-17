@@ -13,19 +13,23 @@ __pycache__/
 *.pkl
 *.egg-info/
 .mypy_cache/
-
+*.ipynb/
 # === Data and Output Files ===
 *.csv
+*.log
 FineTuning/
 FineTuning/synthetic_dataset.csv
 dist/
 LocalLlm/
 meta-llama/
-System/logs/
-System/metrics/
+evaluation/logs/
+evaluation/metrics/
 
 
 # === Notebooks and Local Config ===
-Vertex.ipynb
-
+/Falcon7b.ipynb
+Gemini.ipynb
+GeminiStreamlit.py
+GPT-4.ipynb
 # === Python Project Configuration ===
+.config.yaml

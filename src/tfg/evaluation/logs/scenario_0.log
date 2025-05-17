@@ -10,12 +10,12 @@ Get the weather in Madrid for November 28th, 2024.
 HumanMessage: Get the weather in Madrid for November 28th, 2024.
 AIMessage: 
 ToolMessage: Successfully transferred to weather_agent
-AIMessage: On November 28th, 2024, in Madrid, the minimum temperature was 2.3°C, and the maximum was 12.7°C. Hourly temperatures are also available.
+AIMessage: On 2024-11-28, the weather in Madrid had a minimum temperature of 2.3°C and a maximum of 12.7°C. Hourly temperatures are also available.
 AIMessage: Transferring back to supervisor
 ToolMessage: Successfully transferred back to supervisor
-AIMessage: OK. The weather in Madrid for November 28th, 2024, had a minimum temperature of 2.3°C and a maximum of 12.7°C.
+AIMessage: OK. The weather in Madrid on November 28th, 2024 had a minimum temperature of 2.3°C and a maximum of 12.7°C.
 
 
 === FINAL RESPONSE (from last AIMessage) ===
-OK. The weather in Madrid for November 28th, 2024, had a minimum temperature of 2.3°C and a maximum of 12.7°C.
+OK. The weather in Madrid on November 28th, 2024 had a minimum temperature of 2.3°C and a maximum of 12.7°C.
 

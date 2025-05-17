@@ -5,71 +5,39 @@ Retrieve the average outdoor temperature for the las 2 days of November 2020. Pr
 
 🔄 Starting Supervisor Flow
 🧠 weather_agent received query
-🧠 weather_agent received query
-🧠 calculator_agent received query
-🧠 calculator_agent received query
 
 === MESSAGES ===
 HumanMessage: Retrieve the average outdoor temperature for the las 2 days of November 2020. Present the daily breakdown and the mean value at the end.
-AIMessage: Okay, I will retrieve the outdoor temperature for the last two days of November 2020, present the daily breakdown, and then calculate the mean temperature.
+AIMessage: Okay, I will retrieve the outdoor temperature for the last two days of November 2020, present the daily breakdown, and then calculate the mean value. I will use the `weather_agent` for this.
 
 
 ToolMessage: Successfully transferred to weather_agent
-AIMessage: I am sorry, I cannot calculate the average outdoor temperature. I can retrieve the daily min and max temperatures for the last two days of November 2020. Would you like me to do that?
+AIMessage: Here is the weather data for the last two days of November 2020 in Madrid:
+
+*   **2020-11-29:** Min 4.5°C, Max 12.1°C
+*   **2020-11-30:** Min 4.0°C, Max 13.9°C
+
+To calculate the average temperature, I'll average the min and max temperatures for each day and then average those two values.
+
+*   **2020-11-29 Avg:** (4.5 + 12.1) / 2 = 8.3°C
+*   **2020-11-30 Avg:** (4.0 + 13.9) / 2 = 8.95°C
+
+**Mean Value:** (8.3 + 8.95) / 2 = 8.625°C
+
+Therefore, the average outdoor temperature for the last two days of November 2020 in Madrid was approximately 8.625°C.
 AIMessage: Transferring back to supervisor
 ToolMessage: Successfully transferred back to supervisor
-AIMessage: My apologies, it seems I cannot directly calculate the average temperature using the weather agent. I will proceed by querying the weather agent for the daily temperatures for November 29th and 30th, 2020, and then calculate the average using the calculator agent.
+AIMessage: The average outdoor temperature for the last two days of November 2020 is as follows:
 
-
-ToolMessage: Successfully transferred to weather_agent
-AIMessage: Here is the weather data for Madrid for the last two days of November 2020:
-
-*   **2020-11-29:** Min temperature: 4.5°C, Max temperature: 12.1°C
-    *   Hourly temperatures: See above
-*   **2020-11-30:** Min temperature: 4.0°C, Max temperature: 13.9°C
-    *   Hourly temperatures: See above
-
-I am unable to calculate the average temperature.
-AIMessage: Transferring back to supervisor
-ToolMessage: Successfully transferred back to supervisor
-AIMessage: Okay, I have the min and max temperatures for each of the two days. To calculate the average daily temperature, I will first calculate the mean of the min and max for each day, and then calculate the average of those two daily averages.
-
-
-ToolMessage: Successfully transferred to calculator_agent
-AIMessage: Okay, I have the min and max temperatures for each of the two days. To calculate the average daily temperature, I will first calculate the mean of the min and max for each day, and then calculate the average of those two daily averages.
-AIMessage: Transferring back to supervisor
-ToolMessage: Successfully transferred back to supervisor
-AIMessage: I will now calculate the average temperature for each day using the calculator agent. First, for November 29th, 2020:
-
-
-ToolMessage: Successfully transferred to calculator_agent
-AIMessage: Therefore, the average outdoor temperature for the last two days of November 2020 is 8.62°C.
-
-**Daily Breakdown:**
-
-*   **2020-11-29:** 8.30°C
-*   **2020-11-30:** 8.95°C
-
-**Overall Average:** 8.62°C
-AIMessage: Transferring back to supervisor
-ToolMessage: Successfully transferred back to supervisor
-AIMessage: Final Answer: The average outdoor temperature for the last two days of November 2020 is 8.62°C.
-
-**Daily Breakdown:**
-
-*   **2020-11-29:** 8.30°C
-*   **2020-11-30:** 8.95°C
-
-**Overall Average:** 8.62°C
+*   **2020-11-29:** Average temperature of 8.3°C
+*   **2020-11-30:** Average temperature of 8.95°C
+*   **Mean Value:** 8.625°C
 
 
 === FINAL RESPONSE (from last AIMessage) ===
-Final Answer: The average outdoor temperature for the last two days of November 2020 is 8.62°C.
+The average outdoor temperature for the last two days of November 2020 is as follows:
 
-**Daily Breakdown:**
-
-*   **2020-11-29:** 8.30°C
-*   **2020-11-30:** 8.95°C
-
-**Overall Average:** 8.62°C
+*   **2020-11-29:** Average temperature of 8.3°C
+*   **2020-11-30:** Average temperature of 8.95°C
+*   **Mean Value:** 8.625°C
 

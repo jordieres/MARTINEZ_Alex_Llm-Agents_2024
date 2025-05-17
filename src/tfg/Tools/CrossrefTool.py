@@ -18,7 +18,7 @@ def crossref(subject: str) -> str:
     Returns:
         str: A formatted string containing article titles and abstracts.
     """
-    limit = 5
+    limit = 10
     cr = Crossref()
     try:
         result = cr.works(query=subject, limit=limit)

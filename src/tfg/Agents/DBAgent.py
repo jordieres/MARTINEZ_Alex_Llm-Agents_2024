@@ -1,7 +1,7 @@
 from langchain.agents import initialize_agent, AgentType
 from langchain_google_vertexai import ChatVertexAI
 from langchain.memory import ConversationBufferMemory
-from Tools.DBTool import influx_tool
+from tfg.Tools.DBTool import influx_tool
 import vertexai
 
 

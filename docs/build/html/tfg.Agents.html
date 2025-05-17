@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tfg.Agents package &mdash; Agentic AI: An Exploratory And Functional Approach 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tfg.Tools package" href="tfg.Tools.html" />
+    <link rel="prev" title="Agentic AI: An Exploratory And Functional Approach documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Agentic AI: An Exploratory And Functional Approach
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">tfg.Agents package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents.BaseAgent">tfg.Agents.BaseAgent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent"><code class="docutils literal notranslate"><span class="pre">BaseAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage"><code class="docutils literal notranslate"><span class="pre">BaseAgent.AIMessage</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent.__init__"><code class="docutils literal notranslate"><span class="pre">BaseAgent.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent.invoke"><code class="docutils literal notranslate"><span class="pre">BaseAgent.invoke()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent.run"><code class="docutils literal notranslate"><span class="pre">BaseAgent.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents.CalcAgent">tfg.Agents.CalcAgent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Agents.CalcAgent.CalculatorAgent"><code class="docutils literal notranslate"><span class="pre">CalculatorAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.CalcAgent.CalculatorAgent.__init__"><code class="docutils literal notranslate"><span class="pre">CalculatorAgent.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents.CrossrefAgent">tfg.Agents.CrossrefAgent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Agents.CrossrefAgent.CrossrefAgent"><code class="docutils literal notranslate"><span class="pre">CrossrefAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.__init__"><code class="docutils literal notranslate"><span class="pre">CrossrefAgent.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents.DBAgent">tfg.Agents.DBAgent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Agents.DBAgent.DBAgent"><code class="docutils literal notranslate"><span class="pre">DBAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.DBAgent.DBAgent.__init__"><code class="docutils literal notranslate"><span class="pre">DBAgent.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.DBAgent.DBAgent.invoke"><code class="docutils literal notranslate"><span class="pre">DBAgent.invoke()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents.ElsevierAgent">tfg.Agents.ElsevierAgent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Agents.ElsevierAgent.ElsevierAgent"><code class="docutils literal notranslate"><span class="pre">ElsevierAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.__init__"><code class="docutils literal notranslate"><span class="pre">ElsevierAgent.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents.WeatherAgent">tfg.Agents.WeatherAgent module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.Agents.WeatherAgent.WeatherAgent"><code class="docutils literal notranslate"><span class="pre">WeatherAgent</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tfg.Agents.WeatherAgent.WeatherAgent.__init__"><code class="docutils literal notranslate"><span class="pre">WeatherAgent.__init__()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.Tools.html">tfg.Tools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.System.html">tfg.System package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.evaluation.html">tfg.evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.utils.html">tfg.utils package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="tfg.html">tfg package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tfg.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">tfg.Agents package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Agents.BaseAgent">tfg.Agents.BaseAgent module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Agents.CalcAgent">tfg.Agents.CalcAgent module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Agents.CrossrefAgent">tfg.Agents.CrossrefAgent module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Agents.DBAgent">tfg.Agents.DBAgent module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Agents.ElsevierAgent">tfg.Agents.ElsevierAgent module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Agents.WeatherAgent">tfg.Agents.WeatherAgent module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-tfg.Agents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tfg.System.html">tfg.System package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfg.Tools.html">tfg.Tools package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfg.evaluation.html">tfg.evaluation package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfg.utils.html">tfg.utils package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tfg.html#module-tfg">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Agentic AI: An Exploratory And Functional Approach</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">tfg.Agents package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tfg.Agents.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tfg-agents-package">
+<h1>tfg.Agents package<a class="headerlink" href="#tfg-agents-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-tfg.Agents.BaseAgent">
+<span id="tfg-agents-baseagent-module"></span><h2>tfg.Agents.BaseAgent module<a class="headerlink" href="#module-tfg.Agents.BaseAgent" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Agents.BaseAgent.</span></span><span class="sig-name descname"><span class="pre">BaseAgent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_instructions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gemini-2.0-flash'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/BaseAgent.html#BaseAgent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>BaseAgent is responsible for creating a specialized agent that can use a specific set of tools
+and execute reasoning and actions through LangGraph-compatible interfaces.</p>
+<p>This base class leverages <cite>create_react_agent</cite> to enable compatibility with the langgraph-supervisor
+model routing logic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tools</strong> (<em>List</em><em>[</em><em>Tool</em><em>]</em>) – A list of LangChain-compatible tools the agent can use.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – A unique name for the agent (used by the supervisor).</p></li>
+<li><p><strong>system_instructions</strong> (<em>str</em>) – Prompt instructions to guide the agent’s behavior.</p></li>
+<li><p><strong>model_name</strong> (<em>str</em>) – Name of the VertexAI chat model to use.</p></li>
+<li><p><strong>model_kwargs</strong> (<em>Dict</em>) – Optional model configuration overrides.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AIMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMessage</span></code></p>
+<p>Message from an AI.</p>
+<p>AIMessage is returned from a chat model as a response to a prompt.</p>
+<p>This message represents the output of the model and consists of both
+the raw output as returned by the model together standardized fields
+(e.g., tool calls, usage metadata) added by the LangChain framework.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__init__" title="Link to this definition"></a></dt>
+<dd><p>Pass in content as positional arg.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>content</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>]]]</span>) – The content of the message.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Additional arguments to pass to the parent class.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.example">
+<span class="sig-name descname"><span class="pre">example</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.example" title="Link to this definition"></a></dt>
+<dd><p>Use to denote that a message is part of an example conversation.</p>
+<p>At the moment, this is ignored by most models. Usage is discouraged.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.invalid_tool_calls">
+<span class="sig-name descname"><span class="pre">invalid_tool_calls</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">InvalidToolCall</span></code><span class="pre">]</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.invalid_tool_calls" title="Link to this definition"></a></dt>
+<dd><p>If provided, tool calls with parsing errors associated with the message.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.lc_attributes">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lc_attributes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.lc_attributes" title="Link to this definition"></a></dt>
+<dd><p>Attrs to be serialized even if they are derived from other init args.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.model_computed_fields">
+<span class="sig-name descname"><span class="pre">model_computed_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">ComputedFieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.model_computed_fields" title="Link to this definition"></a></dt>
+<dd><p>A dictionary of computed field names and their corresponding <cite>ComputedFieldInfo</cite> objects.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.model_config">
+<span class="sig-name descname"><span class="pre">model_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[ConfigDict]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'extra':</span> <span class="pre">'allow'}</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.model_config" title="Link to this definition"></a></dt>
+<dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.model_fields">
+<span class="sig-name descname"><span class="pre">model_fields</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ClassVar[Dict[str,</span> <span class="pre">FieldInfo]]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'additional_kwargs':</span> <span class="pre">FieldInfo(annotation=dict,</span> <span class="pre">required=False,</span> <span class="pre">default_factory=dict),</span> <span class="pre">'content':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">list[Union[str,</span> <span class="pre">dict]]],</span> <span class="pre">required=True),</span> <span class="pre">'example':</span> <span class="pre">FieldInfo(annotation=bool,</span> <span class="pre">required=False,</span> <span class="pre">default=False),</span> <span class="pre">'id':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'invalid_tool_calls':</span> <span class="pre">FieldInfo(annotation=list[InvalidToolCall],</span> <span class="pre">required=False,</span> <span class="pre">default=[]),</span> <span class="pre">'name':</span> <span class="pre">FieldInfo(annotation=Union[str,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None),</span> <span class="pre">'response_metadata':</span> <span class="pre">FieldInfo(annotation=dict,</span> <span class="pre">required=False,</span> <span class="pre">default_factory=dict),</span> <span class="pre">'tool_calls':</span> <span class="pre">FieldInfo(annotation=list[ToolCall],</span> <span class="pre">required=False,</span> <span class="pre">default=[]),</span> <span class="pre">'type':</span> <span class="pre">FieldInfo(annotation=Literal['ai'],</span> <span class="pre">required=False,</span> <span class="pre">default='ai'),</span> <span class="pre">'usage_metadata':</span> <span class="pre">FieldInfo(annotation=Union[UsageMetadata,</span> <span class="pre">NoneType],</span> <span class="pre">required=False,</span> <span class="pre">default=None)}</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.model_fields" title="Link to this definition"></a></dt>
+<dd><p>Metadata about the fields defined on the model,
+mapping of field names to [<cite>FieldInfo</cite>][pydantic.fields.FieldInfo] objects.</p>
+<p>This replaces <cite>Model.__fields__</cite> from Pydantic V1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.pretty_repr">
+<span class="sig-name descname"><span class="pre">pretty_repr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">html</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.pretty_repr" title="Link to this definition"></a></dt>
+<dd><p>Return a pretty representation of the message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>html</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – Whether to return an HTML-formatted string.
+Defaults to False.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A pretty representation of the message.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.tool_calls">
+<span class="sig-name descname"><span class="pre">tool_calls</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">ToolCall</span></code><span class="pre">]</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.tool_calls" title="Link to this definition"></a></dt>
+<dd><p>If provided, tool calls associated with the message.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code><span class="pre">[</span><code class="docutils literal notranslate"><span class="pre">'ai'</span></code><span class="pre">]</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.type" title="Link to this definition"></a></dt>
+<dd><p>The type of the message (used for deserialization). Defaults to “ai”.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.usage_metadata">
+<span class="sig-name descname"><span class="pre">usage_metadata</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code><span class="pre">[</span><code class="xref py py-class docutils literal notranslate"><span class="pre">UsageMetadata</span></code><span class="pre">]</span></em><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.usage_metadata" title="Link to this definition"></a></dt>
+<dd><p>If provided, usage metadata for a message, such as token counts.</p>
+<p>This is a standard representation of token usage that is consistent across models.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tools</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_instructions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gemini-2.0-flash'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/BaseAgent.html#BaseAgent.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.invoke">
+<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/BaseAgent.html#BaseAgent.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.invoke" title="Link to this definition"></a></dt>
+<dd><p>Entry point for langgraph-supervisor to call this agent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>input_data</strong> (<em>dict</em>) – State passed by the supervisor (e.g., {“messages”: […]})</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Agent’s structured response.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/BaseAgent.html#BaseAgent.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.run" title="Link to this definition"></a></dt>
+<dd><p>Convenience method for standalone testing/debugging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>query</strong> (<em>str</em>) – User input to run directly through the agent.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The agent textual response.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tfg.Agents.CalcAgent">
+<span id="tfg-agents-calcagent-module"></span><h2>tfg.Agents.CalcAgent module<a class="headerlink" href="#module-tfg.Agents.CalcAgent" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Agents.CalcAgent.</span></span><span class="sig-name descname"><span class="pre">CalculatorAgent</span></span><a class="reference internal" href="_modules/tfg/Agents/CalcAgent.html#CalculatorAgent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent" title="tfg.Agents.BaseAgent.BaseAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAgent</span></code></a></p>
+<p>Agent for performing simple mathematical operations like mean, sum, min, and max on lists of numbers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/CalcAgent.html#CalculatorAgent.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tfg.Agents.CrossrefAgent">
+<span id="tfg-agents-crossrefagent-module"></span><h2>tfg.Agents.CrossrefAgent module<a class="headerlink" href="#module-tfg.Agents.CrossrefAgent" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Agents.CrossrefAgent.</span></span><span class="sig-name descname"><span class="pre">CrossrefAgent</span></span><a class="reference internal" href="_modules/tfg/Agents/CrossrefAgent.html#CrossrefAgent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent" title="tfg.Agents.BaseAgent.BaseAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAgent</span></code></a></p>
+<p>Agent for searching scientific articles using the Crossref tool.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/CrossrefAgent.html#CrossrefAgent.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tfg.Agents.DBAgent">
+<span id="tfg-agents-dbagent-module"></span><h2>tfg.Agents.DBAgent module<a class="headerlink" href="#module-tfg.Agents.DBAgent" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Agents.DBAgent.DBAgent">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Agents.DBAgent.</span></span><span class="sig-name descname"><span class="pre">DBAgent</span></span><a class="reference internal" href="_modules/tfg/Agents/DBAgent.html#DBAgent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.DBAgent.DBAgent" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Agent for querying InfluxDB using LangChain’s initialize_agent.
+Compatible with langgraph-supervisor expectations.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.DBAgent.DBAgent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/DBAgent.html#DBAgent.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.DBAgent.DBAgent.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.DBAgent.DBAgent.invoke">
+<span class="sig-name descname"><span class="pre">invoke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/DBAgent.html#DBAgent.invoke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.DBAgent.DBAgent.invoke" title="Link to this definition"></a></dt>
+<dd><p>Entry point for LangGraph supervisor. Accepts a state dict and returns the updated one.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tfg.Agents.ElsevierAgent">
+<span id="tfg-agents-elsevieragent-module"></span><h2>tfg.Agents.ElsevierAgent module<a class="headerlink" href="#module-tfg.Agents.ElsevierAgent" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Agents.ElsevierAgent.</span></span><span class="sig-name descname"><span class="pre">ElsevierAgent</span></span><a class="reference internal" href="_modules/tfg/Agents/ElsevierAgent.html#ElsevierAgent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent" title="tfg.Agents.BaseAgent.BaseAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAgent</span></code></a></p>
+<p>Agent for retrieving article content using the Elsevier API tool.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/ElsevierAgent.html#ElsevierAgent.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tfg.Agents.WeatherAgent">
+<span id="tfg-agents-weatheragent-module"></span><h2>tfg.Agents.WeatherAgent module<a class="headerlink" href="#module-tfg.Agents.WeatherAgent" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">tfg.Agents.WeatherAgent.</span></span><span class="sig-name descname"><span class="pre">WeatherAgent</span></span><a class="reference internal" href="_modules/tfg/Agents/WeatherAgent.html#WeatherAgent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent" title="tfg.Agents.BaseAgent.BaseAgent"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAgent</span></code></a></p>
+<p>Agent for retrieving weather information using the OpenWeatherMap tool.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/Agents/WeatherAgent.html#WeatherAgent.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.__init__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tfg.Agents">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tfg.Agents" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Agentic AI: An Exploratory And Functional Approach documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tfg.Tools.html" class="btn btn-neutral float-right" title="tfg.Tools package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alejandro Martinez Esquivias.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

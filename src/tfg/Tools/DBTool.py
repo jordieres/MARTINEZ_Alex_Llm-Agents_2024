@@ -3,12 +3,16 @@ import re
 from pydantic import BaseModel
 from langchain.tools.base import StructuredTool
 from typing import Optional
+from tfg.utils.config import load_config
+
+#load config
+config = load_config()
 
 # Client configuration
-INFLUXDB_URL = "https://apiivm78.etsii.upm.es:8086"
-INFLUXDB_TOKEN = "bYNCMsvuiCEoJfPFL5gPgWgDISh79wO4dH9dF_y6cvOKp6uWTRZHtPIwEbRVb2gfFqo3AdygZCQIdbAGBfd31Q=="
-INFLUXDB_ORG = "UPM"
-INFLUXDB_BUCKET = "LoraWAN"
+INFLUXDB_URL = config["INFLUXDB_URL"]
+INFLUXDB_TOKEN = config["INFLUXDB_TOKEN"]
+INFLUXDB_ORG = config["INFLUXDB_ORG"]
+INFLUXDB_BUCKET = config["INFLUXDB_BUCKET"]
 
 client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 query_api = client.query_api()

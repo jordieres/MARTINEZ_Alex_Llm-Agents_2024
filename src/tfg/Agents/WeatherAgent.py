@@ -1,5 +1,5 @@
-from Tools.WeatherTool import weather_tool
-from Agents.BaseAgent import BaseAgent
+from tfg.Tools.WeatherTool import weather_tool
+from tfg.Agents.BaseAgent import BaseAgent
 
 
 class WeatherAgent(BaseAgent):

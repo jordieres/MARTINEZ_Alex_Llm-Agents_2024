@@ -1,0 +1,7 @@
+project: "your-project-code"
+location: "your-server-location"
+INFLUXDB_URL: "your-influxdb-url"
+INFLUXDB_TOKEN: "your-influxdb-token"
+INFLUXDB_ORG: "your-influxdb-org"
+INFLUXDB_BUCKET: "your-influxdb-bucket"
+ELS_API_KEY: "your-elsevier-api-key"

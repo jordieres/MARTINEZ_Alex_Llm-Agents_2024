@@ -5,19 +5,32 @@ Provide the min and max temperature in Madrid between November 28th and November
 
 🔄 Starting Supervisor Flow
 🧠 weather_agent received query
+🧠 calculator_agent received query
 
 === MESSAGES ===
 HumanMessage: Provide the min and max temperature in Madrid between November 28th and November 30th, 2024.
-AIMessage: I need to get the weather information for Madrid between November 28th and November 30th, 2024. I will use the `weather_agent` to get the temperature for each day and then use the `calculator_agent` to find the min and max temperature.
-
+AIMessage: I need to get the temperature for each of the specified dates and then compute the min and max across those values. I will start by getting the temperature for November 28th, 2024.
 
 ToolMessage: Successfully transferred to weather_agent
-AIMessage: The minimum temperature between November 28th and 30th, 2024 in Madrid was 2.3°C on November 28th. The maximum temperature was 15.4°C on November 30th.
+AIMessage: The temperature in Madrid between November 28th and November 30th, 2024 was:
+- Minimum: 2.3°C on 2024-11-28
+- Maximum: 15.4°C on 2024-11-30
 AIMessage: Transferring back to supervisor
 ToolMessage: Successfully transferred back to supervisor
-AIMessage: The min temperature in Madrid between November 28th and November 30th, 2024 was 2.3°C and the max temperature was 15.4°C.
+AIMessage: I have the min and max temperatures for each day. Now I need to compute the overall min and max temperature across the three days.
+
+ToolMessage: Successfully transferred to calculator_agent
+AIMessage: I have the following temperatures:
+- Nov 28: min=2.3, max=9.8
+- Nov 29: min=3.1, max=12.2
+- Nov 30: min=5.2, max=15.4
+
+I will now calculate the overall min and max.
+AIMessage: Transferring back to supervisor
+ToolMessage: Successfully transferred back to supervisor
+AIMessage: The minimum temperature between November 28th and November 30th, 2024 was 2.3°C, and the maximum temperature was 15.4°C.
 
 
 === FINAL RESPONSE (from last AIMessage) ===
-The min temperature in Madrid between November 28th and November 30th, 2024 was 2.3°C and the max temperature was 15.4°C.
+The minimum temperature between November 28th and November 30th, 2024 was 2.3°C, and the maximum temperature was 15.4°C.
 

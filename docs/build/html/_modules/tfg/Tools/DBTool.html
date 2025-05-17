@@ -1,0 +1,318 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tfg.Tools.DBTool &mdash; Agentic AI: An Exploratory And Functional Approach 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Agentic AI: An Exploratory And Functional Approach
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.Agents.html">tfg.Agents package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.Tools.html">tfg.Tools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.System.html">tfg.System package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.evaluation.html">tfg.evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.utils.html">tfg.utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.html">tfg package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Agentic AI: An Exploratory And Functional Approach</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tfg.Tools.DBTool</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tfg.Tools.DBTool</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">influxdb_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">InfluxDBClient</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.tools.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructuredTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.utils.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_config</span>
+
+<span class="c1">#load config</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
+
+<span class="c1"># Client configuration</span>
+<span class="n">INFLUXDB_URL</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_URL&quot;</span><span class="p">]</span>
+<span class="n">INFLUXDB_TOKEN</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_TOKEN&quot;</span><span class="p">]</span>
+<span class="n">INFLUXDB_ORG</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_ORG&quot;</span><span class="p">]</span>
+<span class="n">INFLUXDB_BUCKET</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_BUCKET&quot;</span><span class="p">]</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">InfluxDBClient</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">INFLUXDB_URL</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="n">INFLUXDB_TOKEN</span><span class="p">,</span> <span class="n">org</span><span class="o">=</span><span class="n">INFLUXDB_ORG</span><span class="p">)</span>
+<span class="n">query_api</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query_api</span><span class="p">()</span>
+
+<span class="c1"># Supported parameters</span>
+<span class="n">VALID_METRICS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;humidity&quot;</span><span class="p">,</span> <span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="s2">&quot;motion&quot;</span><span class="p">,</span> <span class="s2">&quot;vdd&quot;</span><span class="p">}</span>
+<span class="n">VALID_AGGREGATIONS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="s2">&quot;sum&quot;</span><span class="p">}</span>
+
+<span class="c1"># Define expected input schema for the tool using Pydantic</span>
+<div class="viewcode-block" id="InfluxDBQueryInput">
+<a class="viewcode-back" href="../../../tfg.Tools.html#tfg.Tools.DBTool.InfluxDBQueryInput">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">InfluxDBQueryInput</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines the input parameters required for querying InfluxDB.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        metric (str): Sensor metric to query (e.g., temperature, humidity).</span>
+<span class="sd">        time_range (Optional[str]): Relative time range (e.g., &#39;24h&#39;, &#39;7d&#39;). Ignored if start_time is provided.</span>
+<span class="sd">        aggregation (str): Aggregation function to apply (e.g., &#39;mean&#39;, &#39;max&#39;).</span>
+<span class="sd">        start_time (Optional[str]): Absolute start time in ISO 8601 format.</span>
+<span class="sd">        end_time (Optional[str]): Absolute end time in ISO 8601 format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">aggregation</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">time_range</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+
+<span class="c1"># Function to construct Flux query dynamically</span>
+<div class="viewcode-block" id="construct_flux_query">
+<a class="viewcode-back" href="../../../tfg.Tools.html#tfg.Tools.DBTool.construct_flux_query">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">construct_flux_query</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs a Flux query based on extracted parameters.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        params (dict): Dictionary with keys &#39;metric&#39;, &#39;aggregation&#39;, and either &#39;time_range&#39; or both &#39;start_time&#39; and &#39;end_time&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A formatted Flux query string.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: If metric or aggregation is invalid, or required time parameters are missing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">field</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metric&quot;</span><span class="p">,</span> <span class="s2">&quot;humidity&quot;</span><span class="p">)</span>
+    <span class="n">aggregation</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;aggregation&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;start_time&quot;</span><span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;end_time&quot;</span><span class="p">)</span>
+    <span class="n">time_range</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;time_range&quot;</span><span class="p">,</span> <span class="s2">&quot;24h&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Validate metric and aggregation</span>
+    <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">VALID_METRICS</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Invalid metric &#39;</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">&#39;. Available metrics: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">VALID_METRICS</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">aggregation</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">VALID_AGGREGATIONS</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;❌ Invalid aggregation &#39;</span><span class="si">{</span><span class="n">aggregation</span><span class="si">}</span><span class="s2">&#39;. Available functions: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">VALID_AGGREGATIONS</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Build time range</span>
+    <span class="k">if</span> <span class="n">start_time</span> <span class="ow">and</span> <span class="n">end_time</span><span class="p">:</span>
+        <span class="n">time_clause</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;range(start: time(v: &quot;</span><span class="si">{</span><span class="n">start_time</span><span class="si">}</span><span class="s1">&quot;), stop: time(v: &quot;</span><span class="si">{</span><span class="n">end_time</span><span class="si">}</span><span class="s1">&quot;))&#39;</span>
+    <span class="k">elif</span> <span class="n">time_range</span><span class="p">:</span>
+        <span class="n">time_clause</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;range(start: -</span><span class="si">{</span><span class="n">time_range</span><span class="si">}</span><span class="s1">)&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;❌ You must provide either a relative time_range or both start_time and end_time.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Construct query</span>
+    <span class="n">flux_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    from(bucket: &quot;</span><span class="si">{</span><span class="n">INFLUXDB_BUCKET</span><span class="si">}</span><span class="s2">&quot;)</span>
+<span class="s2">      |&gt; </span><span class="si">{</span><span class="n">time_clause</span><span class="si">}</span>
+<span class="s2">      |&gt; filter(fn: (r) =&gt; r[&quot;_measurement&quot;] == &quot;sensor_data&quot;)</span>
+<span class="s2">      |&gt; filter(fn: (r) =&gt; r[&quot;_field&quot;] == &quot;</span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">&quot;)</span>
+<span class="s2">      |&gt; aggregateWindow(every: 1h, fn: </span><span class="si">{</span><span class="n">aggregation</span><span class="si">}</span><span class="s2">, createEmpty: false)</span>
+<span class="s2">      |&gt; yield(name: &quot;result&quot;)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">flux_query</span></div>
+
+
+<span class="c1"># Function that receives individual arguments (required by StructuredTool)</span>
+<div class="viewcode-block" id="query_influxdb">
+<a class="viewcode-back" href="../../../tfg.Tools.html#tfg.Tools.DBTool.query_influxdb">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">query_influxdb</span><span class="p">(</span>
+    <span class="n">metric</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">aggregation</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">time_range</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">start_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">end_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Queries InfluxDB using structured parameters. Accepts both relative and absolute time formats.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        metric (str): Metric name to query (e.g., &quot;temperature&quot;).</span>
+<span class="sd">        aggregation (str): Aggregation function (e.g., &quot;mean&quot;, &quot;max&quot;).</span>
+<span class="sd">        time_range (str, optional): Relative time range (e.g., &quot;24h&quot;, &quot;7d&quot;). Ignored if start_time and end_time are provided.</span>
+<span class="sd">        start_time (str, optional): Absolute start time (e.g., &quot;2024-11-01T00:00:00Z&quot;).</span>
+<span class="sd">        end_time (str, optional): Absolute end time (e.g., &quot;2024-11-10T23:59:59Z&quot;).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Resulting observation string or error message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;metric&quot;</span><span class="p">:</span> <span class="n">metric</span><span class="p">,</span>
+        <span class="s2">&quot;time_range&quot;</span><span class="p">:</span> <span class="n">time_range</span><span class="p">,</span>
+        <span class="s2">&quot;aggregation&quot;</span><span class="p">:</span> <span class="n">aggregation</span><span class="p">,</span>
+        <span class="s2">&quot;start_time&quot;</span><span class="p">:</span> <span class="n">start_time</span><span class="p">,</span>
+        <span class="s2">&quot;end_time&quot;</span><span class="p">:</span> <span class="n">end_time</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">_query_influxdb_internal</span><span class="p">(</span><span class="n">params</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># Internal function to perform the actual query logic</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_query_influxdb_internal</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs and executes a Flux query on InfluxDB from parameter dictionary.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        params (dict): Dictionary containing &#39;metric&#39;, &#39;time_range&#39;, and &#39;aggregation&#39;.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Query results or an error message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Build the Flux query dynamically from parameters</span>
+        <span class="n">flux_query</span> <span class="o">=</span> <span class="n">construct_flux_query</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📊 Extracted Parameters: </span><span class="si">{</span><span class="n">params</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔥 Executing Flux Query:</span><span class="se">\n</span><span class="si">{</span><span class="n">flux_query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
+
+        <span class="c1"># Execute the query using InfluxDB client</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">query_api</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">org</span><span class="o">=</span><span class="n">INFLUXDB_ORG</span><span class="p">,</span> <span class="n">query</span><span class="o">=</span><span class="n">flux_query</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Format the results</span>
+        <span class="k">for</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">records</span><span class="p">:</span>
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Time: </span><span class="si">{</span><span class="n">record</span><span class="o">.</span><span class="n">get_time</span><span class="p">()</span><span class="si">}</span><span class="s2">, Value: </span><span class="si">{</span><span class="n">record</span><span class="o">.</span><span class="n">get_value</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="k">if</span> <span class="n">results</span> <span class="k">else</span> <span class="s2">&quot;⚠️ No data found in the database. Verify if data exists for this time range.&quot;</span>
+    
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ve</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">ve</span><span class="p">)</span>  <span class="c1"># Return validation error messages</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;❌ Error querying InfluxDB: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Function to extract the time range from a query</span>
+<div class="viewcode-block" id="extract_time_range">
+<a class="viewcode-back" href="../../../tfg.Tools.html#tfg.Tools.DBTool.extract_time_range">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_time_range</span><span class="p">(</span><span class="n">user_query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the time range from a user query.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        user_query (str): The input query from the user.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: A formatted time range for InfluxDB (e.g., &quot;24h&quot;, &quot;7d&quot;, &quot;30d&quot;).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">time_patterns</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sa">r</span><span class="s2">&quot;(\d+)\s*(minute|minutes|min)&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;(\d+)\s*(hour|hours|h)&quot;</span><span class="p">:</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;(\d+)\s*(day|days|d)&quot;</span><span class="p">:</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;(\d+)\s*(week|weeks|w)&quot;</span><span class="p">:</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s2">&quot;(\d+)\s*(month|months|mo)&quot;</span><span class="p">:</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span>  <span class="c1"># Approximate: 1 month = 30 days</span>
+        <span class="sa">r</span><span class="s2">&quot;(\d+)\s*(year|years|y)&quot;</span><span class="p">:</span> <span class="s2">&quot;d&quot;</span>  <span class="c1"># Approximate: 1 year = 365 days</span>
+    <span class="p">}</span>
+
+    <span class="n">detected_range</span> <span class="o">=</span> <span class="s2">&quot;24h&quot;</span>  <span class="c1"># Default if no time range is found</span>
+
+    <span class="k">for</span> <span class="n">pattern</span><span class="p">,</span> <span class="n">unit</span> <span class="ow">in</span> <span class="n">time_patterns</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">user_query</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># Extract numeric value</span>
+            <span class="k">if</span> <span class="s2">&quot;month&quot;</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">*=</span> <span class="mi">30</span>  <span class="c1"># Convert months to days</span>
+            <span class="k">elif</span> <span class="s2">&quot;year&quot;</span> <span class="ow">in</span> <span class="n">pattern</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">*=</span> <span class="mi">365</span>  <span class="c1"># Convert years to days</span>
+            <span class="n">detected_range</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">value</span><span class="si">}{</span><span class="n">unit</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">detected_range</span></div>
+
+
+<span class="c1"># LangChain compatible tool</span>
+<span class="n">influx_tool</span> <span class="o">=</span> <span class="n">StructuredTool</span><span class="o">.</span><span class="n">from_function</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;InfluxDB Query Tool&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Fetches sensor data from InfluxDB.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Required parameters: `metric` (e.g., &#39;temperature&#39;), `aggregation` (e.g., &#39;mean&#39;).</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;- Time range can be specified either as a relative `time_range` (e.g., &#39;24h&#39;) or as absolute times with `start_time` and `end_time` &quot;</span>
+        <span class="s2">&quot;(e.g., &#39;2024-11-01T00:00:00Z&#39;).&quot;</span>
+    <span class="p">),</span>
+    <span class="n">func</span><span class="o">=</span><span class="n">query_influxdb</span><span class="p">,</span>
+    <span class="n">args_schema</span><span class="o">=</span><span class="n">InfluxDBQueryInput</span>
+<span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alejandro Martinez Esquivias.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

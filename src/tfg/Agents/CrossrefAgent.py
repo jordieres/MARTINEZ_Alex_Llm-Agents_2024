@@ -1,5 +1,5 @@
-from Tools.CrossrefTool import crossref_tool
-from Agents.BaseAgent import BaseAgent
+from tfg.Tools.CrossrefTool import crossref_tool
+from tfg.Agents.BaseAgent import BaseAgent
 
 class CrossrefAgent(BaseAgent):
     """

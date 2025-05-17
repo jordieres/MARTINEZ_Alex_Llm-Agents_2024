@@ -1,5 +1,5 @@
-from Agents.BaseAgent import BaseAgent
-from Tools.ElsevierTool import elsevier_tool
+from tfg.Agents.BaseAgent import BaseAgent
+from tfg.Tools.ElsevierTool import elsevier_tool
 
 class ElsevierAgent(BaseAgent):
     """

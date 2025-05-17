@@ -4,25 +4,29 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from langchain.schema import HumanMessage, BaseMessage
-from Agents.WeatherAgent import WeatherAgent
-from Agents.DBAgent import DBAgent
-from Agents.CrossrefAgent import CrossrefAgent
-from Agents.ElsevierAgent import ElsevierAgent
-from Agents.CalcAgent import CalculatorAgent
+from tfg.Agents.WeatherAgent import WeatherAgent
+from tfg.Agents.DBAgent import DBAgent
+from tfg.Agents.CrossrefAgent import CrossrefAgent
+from tfg.Agents.ElsevierAgent import ElsevierAgent
+from tfg.Agents.CalcAgent import CalculatorAgent
 import transformers, warnings
 from langchain_google_vertexai import ChatVertexAI
 from langgraph_supervisor import create_supervisor
 import vertexai
-from Tools.CrossrefTool import crossref_tool
-from Tools.WeatherTool import weather_tool
-from Tools.ElsevierTool import elsevier_tool
-from Tools.DBTool import influx_tool
-from Tools.CalcTool import calculator_tool
+from tfg.Tools.CrossrefTool import crossref_tool
+from tfg.Tools.WeatherTool import weather_tool
+from tfg.Tools.ElsevierTool import elsevier_tool
+from tfg.Tools.DBTool import influx_tool
+from tfg.Tools.CalcTool import calculator_tool
 from typing import List
+from tfg.utils.config import load_config
 
 # suppress excessive logs
 transformers.logging.set_verbosity_error()
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+# load config
+config = load_config()
 
 from graphviz import Source
 
@@ -55,11 +59,11 @@ def create_system():
     calculator_agent = CalculatorAgent()
 
     # Initialize Vertex AI & bind tools for the supervisor's underlying LLM
-    vertexai.init(project="summer-surface-443821-r9", location="europe-southwest1")
+    vertexai.init(project=config["project"], location=config["location"])
     llm = ChatVertexAI(
         model_name="gemini-2.0-flash",
         temperature=0.28,
-        max_output_tokens=1000,
+        max_output_tokens=1500,
         top_p=0.95,
         top_k=40
     ).bind_tools(
@@ -87,7 +91,8 @@ def create_system():
             "If you need a daily breakdown or to compute an average over multiple days, query each day using an agent and then aggregate.\n"
             "Always narrate your reasoning before and after each tool call.\n"
             "Do not assume missing data – if a sensor query fails, try a fallback or notify the user.\n"
-            "Only return a final answer when all data is gathered and processed."
+            "Only return a final answer when all data is gathered and processed.\n"
+            "Everything related to outdoor temperature MUST be forwarded to 'weather_agent'.\n"
         )
     )
 
@@ -119,8 +124,15 @@ def run_conversation(user_input: str, return_full: bool = False):
     print("\n📜 Full message trace:")
     for msg in result["messages"]:
         msg_type = msg.__class__.__name__
-        content = getattr(msg, "content", "")
-        print(f"{msg_type}: {content}")
+
+        if msg_type == "ToolMessage":
+
+            payload = getattr(msg, "tool_response", None) or getattr(msg, "content", "")
+            print(f"{msg_type}: Tool response: {payload}")
+            
+        else:
+            content = getattr(msg, "content", "")
+            print(f"{msg_type}: {content}")
 
     # 2) Print `final_output` if provided by the agent
     final = result.get("final_output")

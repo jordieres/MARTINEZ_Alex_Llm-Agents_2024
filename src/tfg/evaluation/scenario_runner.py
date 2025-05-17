@@ -6,15 +6,13 @@ from contextlib import redirect_stdout
 # Add the root path of your modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from System.main import run_conversation
-from evaluator import evaluate_response 
+from tfg.System.main import run_conversation
+from tfg.evaluation.evaluator import evaluate_response 
 
 BASE_DIR = os.path.dirname(__file__)
 SCENARIO_FILE = os.path.join(os.path.dirname(__file__), "scenarios", "complex_scenarios.txt")
 LOG_DIR = os.path.join(os.path.dirname(__file__), "logs")
 METRIC_DIR = os.path.join(os.path.dirname(__file__), "metrics")
-#LOG_DIR = "logs"
-#METRIC_DIR = "metrics"
 
 os.makedirs(LOG_DIR, exist_ok=True)
 os.makedirs(METRIC_DIR, exist_ok=True)

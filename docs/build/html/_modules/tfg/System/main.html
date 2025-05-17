@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tfg.System.main &mdash; Agentic AI: An Exploratory And Functional Approach 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Agentic AI: An Exploratory And Functional Approach
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.Agents.html">tfg.Agents package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.Tools.html">tfg.Tools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.System.html">tfg.System package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.evaluation.html">tfg.evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.utils.html">tfg.utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tfg.html">tfg package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Agentic AI: An Exploratory And Functional Approach</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">tfg.System.main</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for tfg.System.main</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1"># Add the root path of your modules</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;..&quot;</span><span class="p">)))</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.schema</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">BaseMessage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Agents.WeatherAgent</span><span class="w"> </span><span class="kn">import</span> <span class="n">WeatherAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Agents.DBAgent</span><span class="w"> </span><span class="kn">import</span> <span class="n">DBAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Agents.CrossrefAgent</span><span class="w"> </span><span class="kn">import</span> <span class="n">CrossrefAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Agents.ElsevierAgent</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElsevierAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Agents.CalcAgent</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalculatorAgent</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">transformers</span><span class="o">,</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_google_vertexai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatVertexAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph_supervisor</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_supervisor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">vertexai</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Tools.CrossrefTool</span><span class="w"> </span><span class="kn">import</span> <span class="n">crossref_tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Tools.WeatherTool</span><span class="w"> </span><span class="kn">import</span> <span class="n">weather_tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Tools.ElsevierTool</span><span class="w"> </span><span class="kn">import</span> <span class="n">elsevier_tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Tools.DBTool</span><span class="w"> </span><span class="kn">import</span> <span class="n">influx_tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.Tools.CalcTool</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculator_tool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.utils.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_config</span>
+
+<span class="c1"># suppress excessive logs</span>
+<span class="n">transformers</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">set_verbosity_error</span><span class="p">()</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">)</span>
+
+<span class="c1"># load config</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">graphviz</span><span class="w"> </span><span class="kn">import</span> <span class="n">Source</span>
+
+<div class="viewcode-block" id="export_graph_png">
+<a class="viewcode-back" href="../../../tfg.System.html#tfg.System.main.export_graph_png">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">export_graph_png</span><span class="p">(</span><span class="n">output_path</span><span class="o">=</span><span class="s2">&quot;langgraph_diagram.png&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a PNG diagram of the compiled LangGraph supervisor flow.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">create_system</span><span class="p">()</span><span class="o">.</span><span class="n">get_graph</span><span class="p">()</span>
+    <span class="n">dot_source</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">draw_png</span><span class="p">()</span>  <span class="c1"># Get DOT format</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">Source</span><span class="p">(</span><span class="n">dot_source</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="n">cleanup</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ LangGraph diagram exported as: </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="print_graph_ascii">
+<a class="viewcode-back" href="../../../tfg.System.html#tfg.System.main.print_graph_ascii">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_graph_ascii</span><span class="p">():</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">create_system</span><span class="p">()</span><span class="o">.</span><span class="n">get_graph</span><span class="p">()</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">print_ascii</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="print_graph_mermaid">
+<a class="viewcode-back" href="../../../tfg.System.html#tfg.System.main.print_graph_mermaid">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">print_graph_mermaid</span><span class="p">():</span>
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">create_system</span><span class="p">()</span><span class="o">.</span><span class="n">get_graph</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">draw_mermaid</span><span class="p">())</span></div>
+
+
+
+<span class="c1"># ✅ Encapsulate system creation to allow per-execution isolation</span>
+<div class="viewcode-block" id="create_system">
+<a class="viewcode-back" href="../../../tfg.System.html#tfg.System.main.create_system">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_system</span><span class="p">():</span>
+    <span class="c1"># Initialize your specialized agents</span>
+    <span class="n">weather_agent</span> <span class="o">=</span> <span class="n">WeatherAgent</span><span class="p">()</span>
+    <span class="n">db_agent</span>      <span class="o">=</span> <span class="n">DBAgent</span><span class="p">()</span>
+    <span class="n">crossref_agent</span>      <span class="o">=</span> <span class="n">CrossrefAgent</span><span class="p">()</span>
+    <span class="n">elsevier_agent</span>     <span class="o">=</span> <span class="n">ElsevierAgent</span><span class="p">()</span>
+    <span class="n">calculator_agent</span> <span class="o">=</span> <span class="n">CalculatorAgent</span><span class="p">()</span>
+
+    <span class="c1"># Initialize Vertex AI &amp; bind tools for the supervisor&#39;s underlying LLM</span>
+    <span class="n">vertexai</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;project&quot;</span><span class="p">],</span> <span class="n">location</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">])</span>
+    <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatVertexAI</span><span class="p">(</span>
+        <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;gemini-2.0-flash&quot;</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.28</span><span class="p">,</span>
+        <span class="n">max_output_tokens</span><span class="o">=</span><span class="mi">1500</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+        <span class="n">top_k</span><span class="o">=</span><span class="mi">40</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">bind_tools</span><span class="p">(</span>
+        <span class="p">[</span><span class="n">weather_tool</span><span class="p">,</span> <span class="n">influx_tool</span><span class="p">,</span> <span class="n">crossref_tool</span><span class="p">,</span> <span class="n">elsevier_tool</span><span class="p">,</span> <span class="n">calculator_tool</span><span class="p">],</span>
+        <span class="n">tool_choice</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Create the supervisor</span>
+    <span class="n">supervisor</span> <span class="o">=</span> <span class="n">create_supervisor</span><span class="p">(</span>
+        <span class="n">agents</span><span class="o">=</span><span class="p">[</span><span class="n">weather_agent</span><span class="p">,</span> <span class="n">db_agent</span><span class="p">,</span> <span class="n">crossref_agent</span><span class="p">,</span> <span class="n">elsevier_agent</span><span class="p">,</span> <span class="n">calculator_agent</span><span class="p">],</span>
+        <span class="n">model</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+        <span class="n">prompt</span><span class="o">=</span><span class="p">(</span>
+            <span class="s2">&quot;You are a supervisor managing different tools for complex engineering queries.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Use `weather_agent` to get **outdoor temperature**, historical or not, using approximate or simulated data if needed.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Use `db_agent` to access **indoor sensor data** from the lab (e.g., humidity, temperature, light).</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Use `calculator_agent` to compute statistics like mean, max, min over multiple values.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Use `cr_agent` to search article titles and `els_agent` to retrieve article content.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Use `calculator_agent` for performing numeric operations like mean, max, or min.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;General context:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- The system handles queries for an environmental sensor network deployed at Universidad Politécnica de Madrid.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- The term &#39;lab&#39; refers to laboratory spaces monitored by these sensors.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Assume standard working hours (9am-5pm) if occupancy data is missing.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;- Use Madrid as the default external weather location.</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;You may call multiple tools or repeat tool calls if needed.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;If you need a daily breakdown or to compute an average over multiple days, query each day using an agent and then aggregate.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Always narrate your reasoning before and after each tool call.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Do not assume missing data – if a sensor query fails, try a fallback or notify the user.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Only return a final answer when all data is gathered and processed.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Everything related to outdoor temperature MUST be forwarded to &#39;weather_agent&#39;.</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Compile the LangGraph workflow</span>
+    <span class="k">return</span> <span class="n">supervisor</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="run_conversation">
+<a class="viewcode-back" href="../../../tfg.System.html#tfg.System.main.run_conversation">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">run_conversation</span><span class="p">(</span><span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_full</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Runs one turn of the supervisor flow, then prints:</span>
+<span class="sd">      1) A full trace of every message exchanged</span>
+<span class="sd">      2) The `final_output` field if present (otherwise, last assistant content)</span>
+<span class="sd">    </span>
+<span class="sd">    ✅ Modified: each run uses a fresh memory and new system</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔄 Starting Supervisor Flow&quot;</span><span class="p">)</span>
+
+    <span class="n">graph</span> <span class="o">=</span> <span class="n">create_system</span><span class="p">()</span>
+    <span class="n">memory</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">user_input</span><span class="p">)]</span>
+
+    <span class="c1"># Run the graph with fresh memory</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span>
+        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">memory</span>
+    <span class="p">})</span>
+
+    <span class="k">if</span> <span class="n">return_full</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="c1"># 1) Full message trace (for debugging / explainability)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📜 Full message trace:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">]:</span>
+        <span class="n">msg_type</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+
+        <span class="k">if</span> <span class="n">msg_type</span> <span class="o">==</span> <span class="s2">&quot;ToolMessage&quot;</span><span class="p">:</span>
+
+            <span class="n">payload</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s2">&quot;tool_response&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">msg_type</span><span class="si">}</span><span class="s2">: Tool response: </span><span class="si">{</span><span class="n">payload</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">msg_type</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 2) Print `final_output` if provided by the agent</span>
+    <span class="n">final</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;final_output&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">final</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🧠 Final Output:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">final</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;messages&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">fallback</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">last</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">last</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> Response:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">fallback</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;--graph&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+        <span class="n">print_graph_ascii</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="s2">&quot;--mermaid&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+        <span class="n">print_graph_mermaid</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="s2">&quot;--png&quot;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+        <span class="n">export_graph_png</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">ui</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">User: &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ui</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;quit&quot;</span><span class="p">,</span> <span class="s2">&quot;exit&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">]:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;👋 Goodbye!&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="n">run_conversation</span><span class="p">(</span><span class="n">ui</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alejandro Martinez Esquivias.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
