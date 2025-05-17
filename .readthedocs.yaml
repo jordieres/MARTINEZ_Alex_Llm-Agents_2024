@@ -1,5 +1,4 @@
 # .readthedocs.yaml
-
 version: 2
 
 build:
@@ -9,7 +8,7 @@ build:
 
 python:
   install:
-    - method: poetry
+    - method: poetry # ¡Correcto para un proyecto con Poetry y pyproject.toml!
 
 sphinx:
-  configuration: docs/conf.py
+  configuration: docs/conf.py # Asegúrate de que esta ruta sea correcta
