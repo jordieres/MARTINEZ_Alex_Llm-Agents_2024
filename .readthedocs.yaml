@@ -10,8 +10,8 @@ python:
   install:
     - method: poetry
       # Indica a Poetry que instale el grupo 'docs'
-      # Esto es equivalente a "poetry install --with docs"
-      extra_requirements:
+      # Esto es equivalente a "poetry install --extras docs"
+      extras: # <--- CORREGIDO: 'extras' en lugar de 'extra_requirements'
         - docs
       # Alternativamente, si quieres instalar todas las dependencias opcionales:
       # poetry_options: "--all-extras"
