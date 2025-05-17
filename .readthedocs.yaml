@@ -1,17 +1,19 @@
 # .readthedocs.yaml
 version: 2
 
+# Define the build environment
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.12"
+    python: "3.12"  # Should match the Python version compatible with your dependencies
 
+# Configuration for Sphinx documentation
+sphinx:
+  configuration: docs/conf.py  # Path to your Sphinx conf.py file
+
+# Python configuration: Install dependencies using pip and requirements.txt
 python:
   install:
-    - method: poetry
-      # We are temporarily removing the 'extras' key to simplify.
-      # Poetry should still try to install dependencies from pyproject.toml,
-      # including dependency groups if its default behavior includes them.
-
-sphinx:
-  configuration: docs/conf.py
+    - requirements: requirements.txt # Assumes requirements.txt is in the root
+    # If you place requirements.txt in your docs folder, use:
+    # - requirements: docs/requirements.txt
