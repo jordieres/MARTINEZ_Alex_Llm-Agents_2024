@@ -9,14 +9,9 @@ build:
 python:
   install:
     - method: poetry
-      # Indica a Poetry que instale el grupo 'docs'
-      # Esto es equivalente a "poetry install --extras docs"
-      extras: # <--- CORREGIDO: 'extras' en lugar de 'extra_requirements'
-        - docs
-      # Alternativamente, si quieres instalar todas las dependencias opcionales:
-      # poetry_options: "--all-extras"
-      # O si quieres incluir dependencias de desarrollo (si tienes docs en dev):
-      # poetry_options: "--with dev" # o el nombre de tu grupo
+      # We are temporarily removing the 'extras' key to simplify.
+      # Poetry should still try to install dependencies from pyproject.toml,
+      # including dependency groups if its default behavior includes them.
 
 sphinx:
   configuration: docs/conf.py
