@@ -5,10 +5,19 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.12"
+    poetry: "1.8.0"
 
 python:
   install:
-    - method: poetry # ¡Correcto para un proyecto con Poetry y pyproject.toml!
+    - method: poetry
+      # Indica a Poetry que instale el grupo 'docs'
+      # Esto es equivalente a "poetry install --with docs"
+      extra_requirements:
+        - docs
+      # Alternativamente, si quieres instalar todas las dependencias opcionales:
+      # poetry_options: "--all-extras"
+      # O si quieres incluir dependencias de desarrollo (si tienes docs en dev):
+      # poetry_options: "--with dev" # o el nombre de tu grupo
 
 sphinx:
-  configuration: docs/conf.py # Asegúrate de que esta ruta sea correcta
+  configuration: docs/conf.py
