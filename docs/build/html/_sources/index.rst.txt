@@ -13,6 +13,7 @@ This documentation presents the design, architecture, and implementation details
    :maxdepth: 2
    :caption: Modules
 
+   overview
    tfg.Agents
    tfg.Tools
    tfg.System

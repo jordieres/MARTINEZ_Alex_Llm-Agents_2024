@@ -11,6 +11,8 @@ tfg.evaluation.evaluator module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.evaluation.scenario\_runner module
 --------------------------------------
@@ -19,6 +21,8 @@ tfg.evaluation.scenario\_runner module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 Module contents
 ---------------
@@ -27,3 +31,5 @@ Module contents
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__

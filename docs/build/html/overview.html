@@ -1,0 +1,154 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Overview &mdash; Agentic AI: An Exploratory And Functional Approach 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tfg.Agents package" href="tfg.Agents.html" />
+    <link rel="prev" title="Agentic AI: An Exploratory And Functional Approach documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Agentic AI: An Exploratory And Functional Approach
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Project Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#project-description">Project Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-flow-architecture">Data Flow Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-scenario">Example Scenario</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.Agents.html">tfg.Agents package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.Tools.html">tfg.Tools package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.System.html">tfg.System package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.evaluation.html">tfg.evaluation package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.utils.html">tfg.utils package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tfg.html">tfg package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Agentic AI: An Exploratory And Functional Approach</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Project Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="project-overview">
+<span id="overview"></span><h1>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading"></a></h1>
+<p>This page provides a high-level overview of the project, including its goals, the technologies used, the internal architecture, and a representative use-case scenario.</p>
+<section id="project-description">
+<h2>Project Description<a class="headerlink" href="#project-description" title="Link to this heading"></a></h2>
+<p>This project investigates the integration of <strong>Large Language Models (LLMs)</strong> into an agent-based system capable of performing complex reasoning across various domains. The architecture is modular, explainable, and designed to combine autonomous language understanding with external tool access and iteration over structured workflows.</p>
+<p>### Key components and technologies:
+- <strong>LangGraph</strong> and <strong>LangChain</strong> for graph-based agent orchestration.
+- <strong>Vertex AI (Gemini Pro)</strong> as the main inference engine.
+- <strong>Open-Meteo API</strong> for historical and forecasted weather data.
+- <strong>Elsevier API</strong> and <strong>Crossref API</strong> for retrieving scientific literature.
+- <strong>InfluxDB</strong> for querying time-series sensor data from laboratories.
+- <strong>Custom agents</strong> for handling tasks such as weather retrieval, database access, scientific search, and numerical calculations.
+- <strong>Supervisor agent</strong> for iteratively coordinating agent calls and ensuring task completeness.
+- <strong>Sphinx</strong> and <strong>ReadTheDocs</strong> for documentation generation and deployment.</p>
+</section>
+<section id="data-flow-architecture">
+<h2>Data Flow Architecture<a class="headerlink" href="#data-flow-architecture" title="Link to this heading"></a></h2>
+<p>The system accepts a complex user query in natural language. A <strong>Supervisor</strong> component processes the query and dynamically routes it through a graph of specialized agents. Each agent performs a well-defined sub-task, such as retrieving sensor data, calculating averages, or searching for scientific models.</p>
+<p>The execution graph enables iterative and conditional decision-making: if more information is required, the supervisor can invoke additional agents or reprocess previous results. Once all necessary steps have been completed, the system synthesizes the outputs and delivers a final, explainable response.</p>
+<p>The following diagram illustrates the overall architecture and agent interaction:</p>
+<a class="reference internal image-reference" href="_images/graph_pipeline.png"><img alt="Data flow and agent graph" class="align-center" src="_images/graph_pipeline.png" style="width: 1557.0px; height: 814.5px;" />
+</a>
+</section>
+<section id="example-scenario">
+<h2>Example Scenario<a class="headerlink" href="#example-scenario" title="Link to this heading"></a></h2>
+<p>&gt; <em>“Estimate the heat generation produced by users in Laboratory A from the 5th to 9th of December 2024. Use the temperature difference between indoor sensors and the outdoor temperature in Madrid. Since no occupancy data is available, assume working hours between 08:00 and 18:00 on weekdays. Then search for scientific models of heat generation. Extract the most recent model’s formulation and compare it with your method.”</em></p>
+<p>This prompt triggers the following system behavior:
+- The <strong>Supervisor</strong> identifies the need to retrieve both indoor and outdoor temperature data.
+- The <strong>DBAgent</strong> collects indoor sensor data from <strong>InfluxDB</strong> within the specified date and time range.
+- The <strong>WeatherAgent</strong> fetches outdoor temperature data from <strong>Open-Meteo</strong>.
+- The <strong>CalculatorAgent</strong> computes the differential heat profile and estimates human heat generation using known physical assumptions.
+- The <strong>ElsevierAgent</strong> and <strong>CrossrefAgent</strong> search for recent scientific models related to heat generation in indoor environments.
+- The system compares the computed values with the extracted scientific formulation and generates a reasoned response with quantitative and qualitative analysis.</p>
+<p>This scenario demonstrates the system’s capacity to chain multiple agents in a supervised loop, integrate structured data with domain knowledge, and generate results with traceable and explainable logic.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Agentic AI: An Exploratory And Functional Approach documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tfg.Agents.html" class="btn btn-neutral float-right" title="tfg.Agents package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Alejandro Martinez Esquivias.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

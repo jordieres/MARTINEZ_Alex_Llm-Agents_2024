@@ -11,6 +11,8 @@ tfg.Tools.CalcTool module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Tools.CrossrefTool module
 -----------------------------
@@ -19,6 +21,8 @@ tfg.Tools.CrossrefTool module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Tools.DBTool module
 -----------------------
@@ -27,7 +31,8 @@ tfg.Tools.DBTool module
    :members:
    :show-inheritance:
    :undoc-members:
-   :no-index:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Tools.ElsevierTool module
 -----------------------------
@@ -36,6 +41,8 @@ tfg.Tools.ElsevierTool module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Tools.WeatherTool module
 ----------------------------
@@ -44,6 +51,8 @@ tfg.Tools.WeatherTool module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 Module contents
 ---------------
@@ -52,3 +61,5 @@ Module contents
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
