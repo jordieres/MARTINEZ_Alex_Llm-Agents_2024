@@ -9,7 +9,7 @@ build:
 
 # Configuration for Sphinx documentation
 sphinx:
-  configuration: docs/conf.py  # Path to your Sphinx conf.py file
+  configuration: docs/source/conf.py  # Path to your Sphinx conf.py file
 
 # Python configuration: Install dependencies using pip and requirements.txt
 python:
