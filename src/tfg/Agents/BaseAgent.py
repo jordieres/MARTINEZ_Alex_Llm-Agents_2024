@@ -7,7 +7,10 @@ from langchain_core.messages import AIMessage
 from tfg.utils.config import load_config
 
 #load config
-config = load_config()
+try:
+    config = load_config()
+except FileNotFoundError:
+    config = {"project": "placeholder", "location": "placeholder"}
 
 class BaseAgent:
     """

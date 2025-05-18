@@ -9,8 +9,10 @@ tfg.Agents.BaseAgent module
 
 .. automodule:: tfg.Agents.BaseAgent
    :members:
-   :show-inheritance:
    :undoc-members:
+   :show-inheritance:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Agents.CalcAgent module
 ---------------------------
@@ -19,6 +21,8 @@ tfg.Agents.CalcAgent module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Agents.CrossrefAgent module
 -------------------------------
@@ -27,6 +31,8 @@ tfg.Agents.CrossrefAgent module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Agents.DBAgent module
 -------------------------
@@ -35,6 +41,8 @@ tfg.Agents.DBAgent module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Agents.ElsevierAgent module
 -------------------------------
@@ -43,6 +51,8 @@ tfg.Agents.ElsevierAgent module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 tfg.Agents.WeatherAgent module
 ------------------------------
@@ -51,6 +61,8 @@ tfg.Agents.WeatherAgent module
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__
 
 Module contents
 ---------------
@@ -59,3 +71,5 @@ Module contents
    :members:
    :show-inheritance:
    :undoc-members:
+   :special-members: __init__
+   :exclude-members: __weakref__

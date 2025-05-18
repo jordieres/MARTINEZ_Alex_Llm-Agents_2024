@@ -19,7 +19,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
     'sphinx.ext.napoleon',
-    'sphinx_autodoc_typehints',  # Optional: automatic type hint rendering
+    'sphinx_autodoc_typehints',
 ]
 
 templates_path = ['_templates']
@@ -35,9 +35,10 @@ html_static_path = ['_static']
 autodoc_default_options = {
     'members': True,
     'undoc-members': True,
-    'show-inheritance': True,
-    'private-members': False,
+    'private-members': True,
     'special-members': '__init__',
+    'inherited-members': True,
+    'show-inheritance': True,
 }
 
 # -- Napoleon settings for Google-style docstrings ---------------------------
