@@ -26,3 +26,4 @@ grandalf>=0.8.0,<0.9.0
 # Add any other Sphinx extensions you use here
 sphinx
 sphinx-rtd-theme
+sphinx_autodoc_typehints
