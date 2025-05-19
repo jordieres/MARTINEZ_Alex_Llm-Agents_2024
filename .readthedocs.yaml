@@ -13,7 +13,8 @@ sphinx:
 
 # Dummy variables avoiding issues
 environment:
-  INFLUXDB_URL: "http://dummy-url"
+  INFLUXDB_URL: "https://dummy-influxdb-url.com"
+  INFLUXDB_TOKEN: "dummy-token" 
   
 # Python configuration: Install dependencies using pip and requirements.txt
 python:
