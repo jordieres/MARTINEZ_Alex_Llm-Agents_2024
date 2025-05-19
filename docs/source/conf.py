@@ -2,6 +2,31 @@
 
 import os
 import sys
+import yaml
+
+def load_env_from_yaml(config_path):
+    """Load environment variables from a YAML file."""
+    if not os.path.isfile(config_path):
+        print(f"[INFO] Configuration file {config_path} not found. Skipping...")
+        return
+
+    with open(config_path, 'r') as file:
+        try:
+            config = yaml.safe_load(file)
+        except yaml.YAMLError as e:
+            print(f"[ERROR] Failed to parse YAML: {e}")
+            return
+
+    # Flatten nested dictionaries if needed, or assume flat structure
+    for key, value in config.items():
+        # Only set if not already in the environment
+        os.environ.setdefault(key, str(value))
+
+# Usage example
+CONFIG_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../config.yaml'))
+load_env_from_yaml(CONFIG_FILE_PATH)
+# ------------------- Normal conf.py
+
 
 # Add the 'src' directory to sys.path, regardless of where Sphinx is run from
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', 'src')))
