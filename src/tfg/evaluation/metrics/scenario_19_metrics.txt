@@ -1,9 +1,9 @@
-length_chars: 68
+length_chars: 122
 responds_to_prompt: yes
-contains_numerical_value: True
-agent_count: 1
-agent_sequence: weather_agent
-uses_weather_agent: True
+contains_numerical_value: False
+agent_count: 0
+agent_sequence: 
+uses_weather_agent: False
 uses_db_agent: False
 uses_crossref_agent: False
 uses_elsevier_agent: False

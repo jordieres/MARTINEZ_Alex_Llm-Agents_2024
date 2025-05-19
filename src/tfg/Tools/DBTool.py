@@ -6,7 +6,10 @@ from typing import Optional
 from tfg.utils.config import load_config
 
 #load config
-config = load_config()
+try:
+    config = load_config()
+except FileNotFoundError:
+    config = {"project": "placeholder", "location": "placeholder"}
 
 # Client configuration
 INFLUXDB_URL = config["INFLUXDB_URL"]
