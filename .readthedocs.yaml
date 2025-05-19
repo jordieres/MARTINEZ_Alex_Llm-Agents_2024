@@ -11,6 +11,10 @@ build:
 sphinx:
   configuration: docs/source/conf.py  # Path to your Sphinx conf.py file
 
+# Dummy variables avoiding issues
+environment:
+  INFLUXDB_URL: "http://dummy-url"
+  
 # Python configuration: Install dependencies using pip and requirements.txt
 python:
   install:
