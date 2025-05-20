@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tfg.Agents.html">tfg.Agents package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tfg.Tools.html">tfg.Tools package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tfg.System.html">tfg.System package</a></li>
@@ -52,6 +53,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">tfg.utils package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tfg.utils.config">tfg.utils.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tfg.utils.config.get_config_value"><code class="docutils literal notranslate"><span class="pre">get_config_value()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#tfg.utils.config.load_config"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
 </ul>
 </li>
@@ -108,6 +110,17 @@
 </section>
 <section id="module-tfg.utils.config">
 <span id="tfg-utils-config-module"></span><h2>tfg.utils.config module<a class="headerlink" href="#module-tfg.utils.config" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="tfg.utils.config.get_config_value">
+<span class="sig-prename descclassname"><span class="pre">tfg.utils.config.</span></span><span class="sig-name descname"><span class="pre">get_config_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/utils/config.html#get_config_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.utils.config.get_config_value" title="Link to this definition"></a></dt>
+<dd><p>Get a config value from environment, falling back to YAML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="tfg.utils.config.load_config">
 <span class="sig-prename descclassname"><span class="pre">tfg.utils.config.</span></span><span class="sig-name descname"><span class="pre">load_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tfg/utils/config.html#load_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#tfg.utils.config.load_config" title="Link to this definition"></a></dt>

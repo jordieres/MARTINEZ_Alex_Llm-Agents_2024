@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="tfg.Tools package" href="tfg.Tools.html" />
-    <link rel="prev" title="Project Overview" href="overview.html" /> 
+    <link rel="prev" title="Configuration" href="configuration.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,6 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">tfg.Agents package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-tfg.Agents.BaseAgent">tfg.Agents.BaseAgent module</a><ul>
@@ -196,6 +197,88 @@ model routing logic.</p>
 the raw output as returned by the model together standardized fields
 (e.g., tool calls, usage metadata) added by the LangChain framework.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__add__" title="Link to this definition"></a></dt>
+<dd><p>Concatenate this message with another message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatPromptTemplate</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__copy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a shallow copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__deepcopy__">
+<span class="sig-name descname"><span class="pre">__deepcopy__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__deepcopy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a deep copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__get_pydantic_core_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_core_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__get_pydantic_core_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s CoreSchema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.type" title="tfg.Agents.BaseAgent.BaseAgent.AIMessage.type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code>]</span>) – The class we are generating a schema for.
+This will generally be the same as the <cite>cls</cite> argument if this is a classmethod.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetCoreSchemaHandler</span></code></span>) – A callable that calls into Pydantic’s internal CoreSchema generation logic.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <cite>pydantic-core</cite> <cite>CoreSchema</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__get_pydantic_json_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_json_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core_schema</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__get_pydantic_json_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s JSON schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>core_schema</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span>) – A <cite>pydantic-core</cite> CoreSchema.
+You can ignore this argument and call the handler with a new CoreSchema,
+wrap this CoreSchema (<cite>{‘type’: ‘nullable’, ‘schema’: current_schema}</cite>),
+or just call the handler with the original schema.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetJsonSchemaHandler</span></code></span>) – Call into Pydantic’s internal JSON schema generation.
+This will raise a <cite>pydantic.errors.PydanticInvalidForJsonSchema</cite> if JSON schema
+generation fails.
+Since this gets called by <cite>BaseModel.model_json_schema</cite> you can override the
+<cite>schema_generator</cite> argument to that function to change JSON schema generation globally
+for a type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A JSON schema, as a Python object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__init__" title="Link to this definition"></a></dt>
 <dd><p>Pass in content as positional arg.</p>
@@ -205,6 +288,72 @@ the raw output as returned by the model together standardized fields
 <li><p><strong>content</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.dict" title="tfg.Agents.BaseAgent.BaseAgent.AIMessage.dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]]]</span>) – The content of the message.</p></li>
 <li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Additional arguments to pass to the parent class.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__iter__" title="Link to this definition"></a></dt>
+<dd><p>So <cite>dict(model)</cite> works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__pretty__">
+<span class="sig-name descname"><span class="pre">__pretty__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__pretty__" title="Link to this definition"></a></dt>
+<dd><p>Used by devtools (<a class="reference external" href="https://python-devtools.helpmanual.io/">https://python-devtools.helpmanual.io/</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__pydantic_init_subclass__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__pydantic_init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__pydantic_init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>This is intended to behave just like <cite>__init_subclass__</cite>, but is called by <cite>ModelMetaclass</cite>
+only after the class is actually fully initialized. In particular, attributes like <cite>model_fields</cite> will
+be present when this is called.</p>
+<p>This is necessary because <cite>__init_subclass__</cite> will always be called by <cite>type.__new__</cite>,
+and it would require a prohibitively large refactor to the <cite>ModelMetaclass</cite> to ensure that
+<cite>type.__new__</cite> was called in such a manner that the class would already be sufficiently initialized.</p>
+<p>This will receive the same <cite>kwargs</cite> that would be passed to the standard <cite>__init_subclass__</cite>, namely,
+any kwargs passed to the class definition that aren’t used internally by pydantic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Any keyword arguments passed to the class definition that aren’t used internally
+by pydantic.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__repr_name__">
+<span class="sig-name descname"><span class="pre">__repr_name__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__repr_name__" title="Link to this definition"></a></dt>
+<dd><p>Name of the instance’s class, used in __repr__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.BaseAgent.BaseAgent.AIMessage.__rich_repr__">
+<span class="sig-name descname"><span class="pre">__rich_repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.BaseAgent.BaseAgent.AIMessage.__rich_repr__" title="Link to this definition"></a></dt>
+<dd><p>Used by Rich (<a class="reference external" href="https://rich.readthedocs.io/en/stable/pretty.html">https://rich.readthedocs.io/en/stable/pretty.html</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1001,6 +1150,88 @@ Defaults to False.</p>
 the raw output as returned by the model together standardized fields
 (e.g., tool calls, usage metadata) added by the LangChain framework.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__add__" title="Link to this definition"></a></dt>
+<dd><p>Concatenate this message with another message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatPromptTemplate</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__copy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a shallow copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__deepcopy__">
+<span class="sig-name descname"><span class="pre">__deepcopy__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__deepcopy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a deep copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__get_pydantic_core_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_core_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__get_pydantic_core_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s CoreSchema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.type" title="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code>]</span>) – The class we are generating a schema for.
+This will generally be the same as the <cite>cls</cite> argument if this is a classmethod.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetCoreSchemaHandler</span></code></span>) – A callable that calls into Pydantic’s internal CoreSchema generation logic.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <cite>pydantic-core</cite> <cite>CoreSchema</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__get_pydantic_json_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_json_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core_schema</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__get_pydantic_json_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s JSON schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>core_schema</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span>) – A <cite>pydantic-core</cite> CoreSchema.
+You can ignore this argument and call the handler with a new CoreSchema,
+wrap this CoreSchema (<cite>{‘type’: ‘nullable’, ‘schema’: current_schema}</cite>),
+or just call the handler with the original schema.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetJsonSchemaHandler</span></code></span>) – Call into Pydantic’s internal JSON schema generation.
+This will raise a <cite>pydantic.errors.PydanticInvalidForJsonSchema</cite> if JSON schema
+generation fails.
+Since this gets called by <cite>BaseModel.model_json_schema</cite> you can override the
+<cite>schema_generator</cite> argument to that function to change JSON schema generation globally
+for a type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A JSON schema, as a Python object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__init__" title="Link to this definition"></a></dt>
 <dd><p>Pass in content as positional arg.</p>
@@ -1010,6 +1241,72 @@ the raw output as returned by the model together standardized fields
 <li><p><strong>content</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.dict" title="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]]]</span>) – The content of the message.</p></li>
 <li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Additional arguments to pass to the parent class.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__iter__" title="Link to this definition"></a></dt>
+<dd><p>So <cite>dict(model)</cite> works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__pretty__">
+<span class="sig-name descname"><span class="pre">__pretty__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__pretty__" title="Link to this definition"></a></dt>
+<dd><p>Used by devtools (<a class="reference external" href="https://python-devtools.helpmanual.io/">https://python-devtools.helpmanual.io/</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__pydantic_init_subclass__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__pydantic_init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__pydantic_init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>This is intended to behave just like <cite>__init_subclass__</cite>, but is called by <cite>ModelMetaclass</cite>
+only after the class is actually fully initialized. In particular, attributes like <cite>model_fields</cite> will
+be present when this is called.</p>
+<p>This is necessary because <cite>__init_subclass__</cite> will always be called by <cite>type.__new__</cite>,
+and it would require a prohibitively large refactor to the <cite>ModelMetaclass</cite> to ensure that
+<cite>type.__new__</cite> was called in such a manner that the class would already be sufficiently initialized.</p>
+<p>This will receive the same <cite>kwargs</cite> that would be passed to the standard <cite>__init_subclass__</cite>, namely,
+any kwargs passed to the class definition that aren’t used internally by pydantic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Any keyword arguments passed to the class definition that aren’t used internally
+by pydantic.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__repr_name__">
+<span class="sig-name descname"><span class="pre">__repr_name__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__repr_name__" title="Link to this definition"></a></dt>
+<dd><p>Name of the instance’s class, used in __repr__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__rich_repr__">
+<span class="sig-name descname"><span class="pre">__rich_repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CalcAgent.CalculatorAgent.AIMessage.__rich_repr__" title="Link to this definition"></a></dt>
+<dd><p>Used by Rich (<a class="reference external" href="https://rich.readthedocs.io/en/stable/pretty.html">https://rich.readthedocs.io/en/stable/pretty.html</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1806,6 +2103,88 @@ Defaults to False.</p>
 the raw output as returned by the model together standardized fields
 (e.g., tool calls, usage metadata) added by the LangChain framework.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__add__" title="Link to this definition"></a></dt>
+<dd><p>Concatenate this message with another message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatPromptTemplate</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__copy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a shallow copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__deepcopy__">
+<span class="sig-name descname"><span class="pre">__deepcopy__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__deepcopy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a deep copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__get_pydantic_core_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_core_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__get_pydantic_core_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s CoreSchema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.type" title="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code>]</span>) – The class we are generating a schema for.
+This will generally be the same as the <cite>cls</cite> argument if this is a classmethod.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetCoreSchemaHandler</span></code></span>) – A callable that calls into Pydantic’s internal CoreSchema generation logic.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <cite>pydantic-core</cite> <cite>CoreSchema</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__get_pydantic_json_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_json_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core_schema</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__get_pydantic_json_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s JSON schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>core_schema</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span>) – A <cite>pydantic-core</cite> CoreSchema.
+You can ignore this argument and call the handler with a new CoreSchema,
+wrap this CoreSchema (<cite>{‘type’: ‘nullable’, ‘schema’: current_schema}</cite>),
+or just call the handler with the original schema.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetJsonSchemaHandler</span></code></span>) – Call into Pydantic’s internal JSON schema generation.
+This will raise a <cite>pydantic.errors.PydanticInvalidForJsonSchema</cite> if JSON schema
+generation fails.
+Since this gets called by <cite>BaseModel.model_json_schema</cite> you can override the
+<cite>schema_generator</cite> argument to that function to change JSON schema generation globally
+for a type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A JSON schema, as a Python object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__init__" title="Link to this definition"></a></dt>
 <dd><p>Pass in content as positional arg.</p>
@@ -1815,6 +2194,72 @@ the raw output as returned by the model together standardized fields
 <li><p><strong>content</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.dict" title="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]]]</span>) – The content of the message.</p></li>
 <li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Additional arguments to pass to the parent class.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__iter__" title="Link to this definition"></a></dt>
+<dd><p>So <cite>dict(model)</cite> works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__pretty__">
+<span class="sig-name descname"><span class="pre">__pretty__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__pretty__" title="Link to this definition"></a></dt>
+<dd><p>Used by devtools (<a class="reference external" href="https://python-devtools.helpmanual.io/">https://python-devtools.helpmanual.io/</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__pydantic_init_subclass__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__pydantic_init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__pydantic_init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>This is intended to behave just like <cite>__init_subclass__</cite>, but is called by <cite>ModelMetaclass</cite>
+only after the class is actually fully initialized. In particular, attributes like <cite>model_fields</cite> will
+be present when this is called.</p>
+<p>This is necessary because <cite>__init_subclass__</cite> will always be called by <cite>type.__new__</cite>,
+and it would require a prohibitively large refactor to the <cite>ModelMetaclass</cite> to ensure that
+<cite>type.__new__</cite> was called in such a manner that the class would already be sufficiently initialized.</p>
+<p>This will receive the same <cite>kwargs</cite> that would be passed to the standard <cite>__init_subclass__</cite>, namely,
+any kwargs passed to the class definition that aren’t used internally by pydantic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Any keyword arguments passed to the class definition that aren’t used internally
+by pydantic.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__repr_name__">
+<span class="sig-name descname"><span class="pre">__repr_name__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__repr_name__" title="Link to this definition"></a></dt>
+<dd><p>Name of the instance’s class, used in __repr__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__rich_repr__">
+<span class="sig-name descname"><span class="pre">__rich_repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.CrossrefAgent.CrossrefAgent.AIMessage.__rich_repr__" title="Link to this definition"></a></dt>
+<dd><p>Used by Rich (<a class="reference external" href="https://rich.readthedocs.io/en/stable/pretty.html">https://rich.readthedocs.io/en/stable/pretty.html</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -2633,6 +3078,88 @@ Compatible with langgraph-supervisor expectations.</p>
 the raw output as returned by the model together standardized fields
 (e.g., tool calls, usage metadata) added by the LangChain framework.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__add__" title="Link to this definition"></a></dt>
+<dd><p>Concatenate this message with another message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatPromptTemplate</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__copy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a shallow copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__deepcopy__">
+<span class="sig-name descname"><span class="pre">__deepcopy__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__deepcopy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a deep copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__get_pydantic_core_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_core_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__get_pydantic_core_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s CoreSchema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.type" title="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code>]</span>) – The class we are generating a schema for.
+This will generally be the same as the <cite>cls</cite> argument if this is a classmethod.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetCoreSchemaHandler</span></code></span>) – A callable that calls into Pydantic’s internal CoreSchema generation logic.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <cite>pydantic-core</cite> <cite>CoreSchema</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__get_pydantic_json_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_json_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core_schema</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__get_pydantic_json_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s JSON schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>core_schema</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span>) – A <cite>pydantic-core</cite> CoreSchema.
+You can ignore this argument and call the handler with a new CoreSchema,
+wrap this CoreSchema (<cite>{‘type’: ‘nullable’, ‘schema’: current_schema}</cite>),
+or just call the handler with the original schema.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetJsonSchemaHandler</span></code></span>) – Call into Pydantic’s internal JSON schema generation.
+This will raise a <cite>pydantic.errors.PydanticInvalidForJsonSchema</cite> if JSON schema
+generation fails.
+Since this gets called by <cite>BaseModel.model_json_schema</cite> you can override the
+<cite>schema_generator</cite> argument to that function to change JSON schema generation globally
+for a type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A JSON schema, as a Python object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__init__" title="Link to this definition"></a></dt>
 <dd><p>Pass in content as positional arg.</p>
@@ -2642,6 +3169,72 @@ the raw output as returned by the model together standardized fields
 <li><p><strong>content</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.dict" title="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]]]</span>) – The content of the message.</p></li>
 <li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Additional arguments to pass to the parent class.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__iter__" title="Link to this definition"></a></dt>
+<dd><p>So <cite>dict(model)</cite> works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__pretty__">
+<span class="sig-name descname"><span class="pre">__pretty__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__pretty__" title="Link to this definition"></a></dt>
+<dd><p>Used by devtools (<a class="reference external" href="https://python-devtools.helpmanual.io/">https://python-devtools.helpmanual.io/</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__pydantic_init_subclass__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__pydantic_init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__pydantic_init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>This is intended to behave just like <cite>__init_subclass__</cite>, but is called by <cite>ModelMetaclass</cite>
+only after the class is actually fully initialized. In particular, attributes like <cite>model_fields</cite> will
+be present when this is called.</p>
+<p>This is necessary because <cite>__init_subclass__</cite> will always be called by <cite>type.__new__</cite>,
+and it would require a prohibitively large refactor to the <cite>ModelMetaclass</cite> to ensure that
+<cite>type.__new__</cite> was called in such a manner that the class would already be sufficiently initialized.</p>
+<p>This will receive the same <cite>kwargs</cite> that would be passed to the standard <cite>__init_subclass__</cite>, namely,
+any kwargs passed to the class definition that aren’t used internally by pydantic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Any keyword arguments passed to the class definition that aren’t used internally
+by pydantic.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__repr_name__">
+<span class="sig-name descname"><span class="pre">__repr_name__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__repr_name__" title="Link to this definition"></a></dt>
+<dd><p>Name of the instance’s class, used in __repr__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__rich_repr__">
+<span class="sig-name descname"><span class="pre">__rich_repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.ElsevierAgent.ElsevierAgent.AIMessage.__rich_repr__" title="Link to this definition"></a></dt>
+<dd><p>Used by Rich (<a class="reference external" href="https://rich.readthedocs.io/en/stable/pretty.html">https://rich.readthedocs.io/en/stable/pretty.html</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -3438,6 +4031,88 @@ Defaults to False.</p>
 the raw output as returned by the model together standardized fields
 (e.g., tool calls, usage metadata) added by the LangChain framework.</p>
 <dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__add__" title="Link to this definition"></a></dt>
+<dd><p>Concatenate this message with another message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChatPromptTemplate</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__copy__">
+<span class="sig-name descname"><span class="pre">__copy__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__copy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a shallow copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__deepcopy__">
+<span class="sig-name descname"><span class="pre">__deepcopy__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__deepcopy__" title="Link to this definition"></a></dt>
+<dd><p>Returns a deep copy of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Self</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__get_pydantic_core_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_core_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__get_pydantic_core_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s CoreSchema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.type" title="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.type"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code>]</span>) – The class we are generating a schema for.
+This will generally be the same as the <cite>cls</cite> argument if this is a classmethod.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetCoreSchemaHandler</span></code></span>) – A callable that calls into Pydantic’s internal CoreSchema generation logic.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <cite>pydantic-core</cite> <cite>CoreSchema</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__get_pydantic_json_schema__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__get_pydantic_json_schema__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">core_schema</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__get_pydantic_json_schema__" title="Link to this definition"></a></dt>
+<dd><p>Hook into generating the model’s JSON schema.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>core_schema</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">AnySchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NoneSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BoolSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IntSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FloatSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DecimalSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">StringSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BytesSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DateSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DatetimeSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TimedeltaSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LiteralSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">EnumSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsInstanceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">IsSubclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ListSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TupleSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">SetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">FrozenSetSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">AfterValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BeforeValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WrapValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">PlainValidatorFunctionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">WithDefaultSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">NullableSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TaggedUnionSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ChainSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">LaxOrStrictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonOrPythonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDictSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelFieldsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ModelSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassArgsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DataclassSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ArgumentsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CallSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">CustomErrorSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">JsonSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">MultiHostUrlSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionsSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">DefinitionReferenceSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">UuidSchema</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ComplexSchema</span></code>]</span>) – A <cite>pydantic-core</cite> CoreSchema.
+You can ignore this argument and call the handler with a new CoreSchema,
+wrap this CoreSchema (<cite>{‘type’: ‘nullable’, ‘schema’: current_schema}</cite>),
+or just call the handler with the original schema.</p></li>
+<li><p><strong>handler</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GetJsonSchemaHandler</span></code></span>) – Call into Pydantic’s internal JSON schema generation.
+This will raise a <cite>pydantic.errors.PydanticInvalidForJsonSchema</cite> if JSON schema
+generation fails.
+Since this gets called by <cite>BaseModel.model_json_schema</cite> you can override the
+<cite>schema_generator</cite> argument to that function to change JSON schema generation globally
+for a type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A JSON schema, as a Python object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">content</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__init__" title="Link to this definition"></a></dt>
 <dd><p>Pass in content as positional arg.</p>
@@ -3447,6 +4122,72 @@ the raw output as returned by the model together standardized fields
 <li><p><strong>content</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Union</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <a class="reference internal" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.dict" title="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.dict"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>]]]</span>) – The content of the message.</p></li>
 <li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Additional arguments to pass to the parent class.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__iter__" title="Link to this definition"></a></dt>
+<dd><p>So <cite>dict(model)</cite> works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>], <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__pretty__">
+<span class="sig-name descname"><span class="pre">__pretty__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__pretty__" title="Link to this definition"></a></dt>
+<dd><p>Used by devtools (<a class="reference external" href="https://python-devtools.helpmanual.io/">https://python-devtools.helpmanual.io/</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>]</span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__pydantic_init_subclass__">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__pydantic_init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__pydantic_init_subclass__" title="Link to this definition"></a></dt>
+<dd><p>This is intended to behave just like <cite>__init_subclass__</cite>, but is called by <cite>ModelMetaclass</cite>
+only after the class is actually fully initialized. In particular, attributes like <cite>model_fields</cite> will
+be present when this is called.</p>
+<p>This is necessary because <cite>__init_subclass__</cite> will always be called by <cite>type.__new__</cite>,
+and it would require a prohibitively large refactor to the <cite>ModelMetaclass</cite> to ensure that
+<cite>type.__new__</cite> was called in such a manner that the class would already be sufficiently initialized.</p>
+<p>This will receive the same <cite>kwargs</cite> that would be passed to the standard <cite>__init_subclass__</cite>, namely,
+any kwargs passed to the class definition that aren’t used internally by pydantic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></span>) – Any keyword arguments passed to the class definition that aren’t used internally
+by pydantic.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__repr_name__">
+<span class="sig-name descname"><span class="pre">__repr_name__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__repr_name__" title="Link to this definition"></a></dt>
+<dd><p>Name of the instance’s class, used in __repr__.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__rich_repr__">
+<span class="sig-name descname"><span class="pre">__rich_repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfg.Agents.WeatherAgent.WeatherAgent.AIMessage.__rich_repr__" title="Link to this definition"></a></dt>
+<dd><p>Used by Rich (<a class="reference external" href="https://rich.readthedocs.io/en/stable/pretty.html">https://rich.readthedocs.io/en/stable/pretty.html</a>) to pretty print objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>] | <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code>]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -4235,7 +4976,7 @@ Defaults to False.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="overview.html" class="btn btn-neutral float-left" title="Project Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="tfg.Tools.html" class="btn btn-neutral float-right" title="tfg.Tools package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

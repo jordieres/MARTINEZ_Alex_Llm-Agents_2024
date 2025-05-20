@@ -12,7 +12,7 @@ This project investigates the integration of **Large Language Models (LLMs)** in
 
 ### Key components and technologies:
 - **LangGraph** and **LangChain** for graph-based agent orchestration.
-- **Vertex AI (Gemini Pro)** as the main inference engine.
+- **Vertex AI (Gemini)** as the main inference engine.
 - **Open-Meteo API** for historical and forecasted weather data.
 - **Elsevier API** and **Crossref API** for retrieving scientific literature.
 - **InfluxDB** for querying time-series sensor data from laboratories.

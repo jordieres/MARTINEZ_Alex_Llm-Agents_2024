@@ -8,12 +8,18 @@ Agentic AI: An Exploratory And Functional Approach documentation
 
 This documentation presents the design, architecture, and implementation details of a modular agent-based system developed for the final degree project (TFG). The system combines large language models with external tools for intelligent decision-making in scientific and environmental contexts.
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Getting Started
+
+   overview
+   configuration
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Modules
 
-   overview
    tfg.Agents
    tfg.Tools
    tfg.System

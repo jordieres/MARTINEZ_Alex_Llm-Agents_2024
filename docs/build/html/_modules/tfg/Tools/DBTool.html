@@ -42,6 +42,7 @@
               <p class="caption" role="heading"><span class="caption-text">Modules</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../overview.html">Project Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tfg.Agents.html">tfg.Agents package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tfg.Tools.html">tfg.Tools package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../tfg.System.html">tfg.System package</a></li>
@@ -80,16 +81,13 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain.tools.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructuredTool</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.utils.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_config</span>
-
-<span class="c1">#load config</span>
-<span class="n">config</span> <span class="o">=</span> <span class="n">load_config</span><span class="p">()</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tfg.utils.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config_value</span>
 
 <span class="c1"># Client configuration</span>
-<span class="n">INFLUXDB_URL</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_URL&quot;</span><span class="p">]</span>
-<span class="n">INFLUXDB_TOKEN</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_TOKEN&quot;</span><span class="p">]</span>
-<span class="n">INFLUXDB_ORG</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_ORG&quot;</span><span class="p">]</span>
-<span class="n">INFLUXDB_BUCKET</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;INFLUXDB_BUCKET&quot;</span><span class="p">]</span>
+<span class="n">INFLUXDB_URL</span> <span class="o">=</span> <span class="n">get_config_value</span><span class="p">(</span><span class="s2">&quot;INFLUXDB_URL&quot;</span><span class="p">,</span> <span class="s2">&quot;default-url&quot;</span><span class="p">)</span>
+<span class="n">INFLUXDB_TOKEN</span> <span class="o">=</span> <span class="n">get_config_value</span><span class="p">(</span><span class="s2">&quot;INFLUXDB_TOKEN&quot;</span><span class="p">,</span> <span class="s2">&quot;dummy-token&quot;</span><span class="p">)</span>
+<span class="n">INFLUXDB_ORG</span> <span class="o">=</span> <span class="n">get_config_value</span><span class="p">(</span><span class="s2">&quot;INFLUXDB_ORG&quot;</span><span class="p">,</span> <span class="s2">&quot;default-org&quot;</span><span class="p">)</span>
+<span class="n">INFLUXDB_BUCKET</span> <span class="o">=</span> <span class="n">get_config_value</span><span class="p">(</span><span class="s2">&quot;INFLUXDB_BUCKET&quot;</span><span class="p">,</span> <span class="s2">&quot;default-bucket&quot;</span><span class="p">)</span>
 
 <span class="n">client</span> <span class="o">=</span> <span class="n">InfluxDBClient</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">INFLUXDB_URL</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="n">INFLUXDB_TOKEN</span><span class="p">,</span> <span class="n">org</span><span class="o">=</span><span class="n">INFLUXDB_ORG</span><span class="p">)</span>
 <span class="n">query_api</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">query_api</span><span class="p">()</span>

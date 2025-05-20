@@ -14,6 +14,7 @@ This documentation presents the design, architecture, and implementation details
    :caption: Modules
 
    overview
+   configuration
    tfg.Agents
    tfg.Tools
    tfg.System
