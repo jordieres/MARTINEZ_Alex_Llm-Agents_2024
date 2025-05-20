@@ -4,13 +4,7 @@ from langchain_google_vertexai import ChatVertexAI
 from typing import Dict, List
 import vertexai
 from langchain_core.messages import AIMessage
-from tfg.utils.config import load_config
-
-#load config
-try:
-    config = load_config()
-except FileNotFoundError:
-    config = {"project": "placeholder", "location": "placeholder"}
+from tfg.utils.config import get_config_value
 
 class BaseAgent:
     """
@@ -29,8 +23,8 @@ class BaseAgent:
     """
     def __init__(self, tools: List[Tool], name: str, system_instructions: str = "", model_name: str = "gemini-2.0-flash", model_kwargs: Dict = None):
         # Vertex AI project/location setup (hardcoded for this use case)
-        project = config["project"]
-        location = config["location"]
+        project = get_config_value("project", "default-project")
+        location = get_config_value("location", "default-location")
 
         # Initialize Vertex AI context
         vertexai.init(project=project, location=location)

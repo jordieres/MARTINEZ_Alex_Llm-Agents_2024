@@ -19,14 +19,11 @@ from tfg.Tools.ElsevierTool import elsevier_tool
 from tfg.Tools.DBTool import influx_tool
 from tfg.Tools.CalcTool import calculator_tool
 from typing import List
-from tfg.utils.config import load_config
+from tfg.utils.config import get_config_value
 
 # suppress excessive logs
 transformers.logging.set_verbosity_error()
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-
-# load config
-config = load_config()
 
 from graphviz import Source
 
@@ -59,7 +56,9 @@ def create_system():
     calculator_agent = CalculatorAgent()
 
     # Initialize Vertex AI & bind tools for the supervisor's underlying LLM
-    vertexai.init(project=config["project"], location=config["location"])
+    project = get_config_value("project", "default-project")
+    location = get_config_value("location", "default-location")
+    vertexai.init(project=project, location=location)
     llm = ChatVertexAI(
         model_name="gemini-2.0-flash",
         temperature=0.28,

@@ -2,13 +2,7 @@ import requests
 from langchain.tools import Tool
 from pydantic import BaseModel
 from langchain.tools import StructuredTool
-from tfg.utils.config import load_config
-
-#load config
-try:
-    config = load_config()
-except FileNotFoundError:
-    config = {"project": "placeholder", "location": "placeholder"}
+from tfg.utils.config import get_config_value
 
 # Define expected input schema for the tool using Pydantic
 class ArticleInput(BaseModel):
@@ -25,7 +19,7 @@ def get_article_content(title: str) -> str:
         str: A string containing the content or abstract of the specified article. 
              If the article cannot be found or an error occurs, an appropriate error message is returned.
     """
-    API_KEY = config["ELS_API_KEY"]
+    API_KEY = get_config_value("ELS_API_KEY", "default-api-key")
     BASE_SEARCH_URL = "https://api.elsevier.com/content/search/scopus"
     BASE_ARTICLE_URL = "https://api.elsevier.com/content/article/doi"
 

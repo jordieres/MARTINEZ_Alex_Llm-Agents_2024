@@ -3,19 +3,13 @@ import re
 from pydantic import BaseModel
 from langchain.tools.base import StructuredTool
 from typing import Optional
-from tfg.utils.config import load_config
-
-#load config
-try:
-    config = load_config()
-except FileNotFoundError:
-    config = {"project": "placeholder", "location": "placeholder"}
+from tfg.utils.config import get_config_value
 
 # Client configuration
-INFLUXDB_URL = config["INFLUXDB_URL"]
-INFLUXDB_TOKEN = config["INFLUXDB_TOKEN"]
-INFLUXDB_ORG = config["INFLUXDB_ORG"]
-INFLUXDB_BUCKET = config["INFLUXDB_BUCKET"]
+INFLUXDB_URL = get_config_value("INFLUXDB_URL", "default-url")
+INFLUXDB_TOKEN = get_config_value("INFLUXDB_TOKEN", "dummy-token")
+INFLUXDB_ORG = get_config_value("INFLUXDB_ORG", "default-org")
+INFLUXDB_BUCKET = get_config_value("INFLUXDB_BUCKET", "default-bucket")
 
 client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 query_api = client.query_api()
