@@ -24,6 +24,7 @@ LocalLlm/
 meta-llama/
 evaluation/logs/
 evaluation/metrics/
+*.png
 
 
 # === Notebooks and Local Config ===
@@ -31,5 +32,6 @@ evaluation/metrics/
 Gemini.ipynb
 GeminiStreamlit.py
 GPT-4.ipynb
+metrics_analysis.py
 # === Python Project Configuration ===
 .config.yaml

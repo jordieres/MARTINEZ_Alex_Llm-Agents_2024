@@ -19,7 +19,7 @@ You must check:
 - Did it follow instructions and use the verifier as the final step?
 - Was the answer appropriate given the query and the tools?
 
-Your response must strictly follow this JSON format:
+Your response must strictly follow this JSON format, this is just an example. Calculate your own parameters:
 {
   "confidence_score": 0.92,
   "verdict": "satisfactory",

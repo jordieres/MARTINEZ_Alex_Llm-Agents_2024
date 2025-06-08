@@ -49,3 +49,36 @@ This prompt triggers the following system behavior:
 
 This scenario demonstrates the system's capacity to chain multiple agents in a supervised loop, integrate structured data with domain knowledge, and generate results with traceable and explainable logic.
 
+Example Scenario Execution
+--------------------------
+
+**Prompt:**  
+*"Estimate the heat generation produced by users in Laboratory A from the 5th to 9th of December 2024. Use the temperature difference between indoor sensors and the outdoor temperature in Madrid. Since no occupancy data is available, assume working hours between 08:00 and 18:00 on weekdays. Then search for scientific models of heat generation. Extract the most recent model’s formulation and compare it with your method."*
+
+**Execution Summary:**  
+- The **Supervisor** decomposed the task into a multi-step reasoning plan, aiming to retrieve temperature data, compute temperature differences, and retrieve scientific models for comparison.
+- The **DBAgent** successfully retrieved indoor temperature data from **InfluxDB** for the specified period and time range.
+- The system attempted multiple queries for **outdoor temperature data** using both the **WeatherAgent** and InfluxDB, but encountered limitations due to missing or misconfigured location metadata.
+- As fallback, the system proceeded with an estimation based on typical human metabolic rates, introducing a range of assumptions to cover different occupancy and activity levels.
+- The **CrossrefAgent** and **ElsevierAgent** were unable to retrieve a valid scientific model within this execution.
+- The **VerifierAgent** evaluated the final output and assigned a *satisfactory* verdict with a **confidence score of 0.6**, acknowledging that the fallback reasoning was reasonable given the data constraints.
+
+**Final System Output:** ::
+
+    Due to the inability to retrieve specific temperature and occupancy data, the estimated heat generation in Laboratory A during working hours (8:00 - 18:00) from December 5th to 9th, 2024, is estimated to be between 140 W and 1500 W. This range is based on the following assumptions:
+
+    - Occupancy: Between 2 and 10 people.
+    - Metabolic Rate: Between 70 W/person (resting) and 150 W/person (active work).
+
+    It is important to note that this is a rough estimate. The actual heat generation will depend on the actual occupancy and activity levels in the laboratory. Access to sensor data and scientific models would significantly improve the accuracy of this estimation.
+
+    The VerifierAgent returned a confidence score of 0.6 and a "satisfactory" verdict.
+
+**Observations:**  
+This scenario illustrates the system’s ability to handle degraded conditions gracefully:
+- It correctly followed the reasoning plan and retrieved available data.
+- It transparently reported missing data and adapted its reasoning accordingly.
+- It introduced reasonable fallback assumptions with explicit disclosure.
+- The final output was validated and explained, maintaining system transparency.
+
+Such robustness in handling complex, multi-step prompts under partial data availability highlights the explainability and adaptability of the agent-based architecture implemented in this project.
