@@ -38,6 +38,7 @@ h11 = "^0.16.0"
 
 [tool.poetry.group.dev.dependencies]
 sphinx-autodoc-typehints = "^3.2.0"
+sphinx_rtd_theme = "^2.0.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
