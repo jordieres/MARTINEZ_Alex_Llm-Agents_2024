@@ -21,6 +21,7 @@ class BaseAgent:
         model_name (str): Name of the VertexAI chat model to use.
         model_kwargs (Dict): Optional model configuration overrides.
     """
+
     def __init__(self, tools: List[Tool], name: str, system_instructions: str = "", model_name: str = "gemini-2.0-flash", model_kwargs: Dict = None):
         # Vertex AI project/location setup (hardcoded for this use case)
         project = get_config_value("project", "default-project")
@@ -55,7 +56,8 @@ class BaseAgent:
         if "messages" not in input_data or not input_data["messages"]:
             raise ValueError(f"{self.name} received an empty message list.")
     
-        valid_msgs = [msg for msg in input_data["messages"] if hasattr(msg, "content") and msg.content]
+        valid_msgs = [msg for msg in input_data["messages"] if hasattr(msg, 
+                        "content") and msg.content]
         if not valid_msgs:
             raise ValueError(f"{self.name} received message(s) with no content.")
         result = self.agent.invoke(input_data)
@@ -92,3 +94,4 @@ class BaseAgent:
         """
         from langchain_core.messages import HumanMessage
         return self.agent.invoke({"messages": [HumanMessage(content=query)]})["messages"][-1].content
+

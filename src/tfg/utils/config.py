@@ -13,3 +13,4 @@ def load_config() -> dict:
 def get_config_value(key: str, default: str = None) -> str:
     """Get a config value from environment, falling back to YAML."""
     return os.environ.get(key) or load_config().get(key, default)
+
