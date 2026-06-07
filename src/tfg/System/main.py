@@ -9,7 +9,7 @@ from typing import List
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from langchain.schema import HumanMessage, BaseMessage
-from langchain_google_vertexai import ChatVertexAI
+from vertexai.generative_models import GenerativeModel
 from tfg.Agents.WeatherAgent import WeatherAgent
 from tfg.Agents.DBAgent import DBAgent
 from tfg.Agents.CrossrefAgent import CrossrefAgent
@@ -43,7 +43,7 @@ def create_system():
     from vertexai import init
     init(project=project, location=location)
 
-    llm = ChatVertexAI(
+    llm = GenerativeModel(
         model_name="gemini-2.0-flash",
         temperature=0.28,
         max_output_tokens=1500,

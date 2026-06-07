@@ -1,6 +1,6 @@
 from langchain.agents import Tool
 from langgraph.prebuilt import create_react_agent
-from langchain_google_vertexai import ChatVertexAI
+from vertexai.generative_models import GenerativeModel
 from typing import Dict, List
 import vertexai
 from langchain_core.messages import AIMessage
@@ -34,7 +34,7 @@ class BaseAgent:
         self.model_kwargs = model_kwargs or {"temperature": 0.28, "max_output_tokens": 1000, "top_p": 0.95, "top_k": 40}
 
         # Create the VertexAI chat model
-        llm = ChatVertexAI(model_name=model_name, **self.model_kwargs)
+        llm = GenerativeModel(model_name=model_name, **self.model_kwargs)
 
         # Create the LangGraph-compatible React-style agent
         self.name = name  # Needed by langgraph-supervisor for routing
